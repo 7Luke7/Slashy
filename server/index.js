@@ -1,0 +1,37 @@
+require("dotenv").config()
+const express = require("express")
+const app = express()
+const PORT = process.env.PORT || 5000
+const router = require("./router")
+const cors = require("cors")
+const {
+    globalError,
+} = require("./errors/CustomError")
+const compression = require("compression")
+
+app.use(compression({
+    level: 9
+}))
+app.set('trust proxy', 1);
+
+const origin = process.env.URL
+
+app.use(cors({
+    origin: origin,
+}))
+
+app.use(express.json())
+app.use("/api", router)
+app.use(globalError)
+
+const setup = async () => {
+    try {
+        app.listen(PORT, () => {
+            console.log(`server is running on port ${PORT}`);
+        })
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+setup()
