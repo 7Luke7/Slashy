@@ -184,8 +184,8 @@ const ProcessPurchase = () => {
                         {variant && <tbody>
                             <tr>
                                 <td className="py-4">
-                                    <div className="flex xxs:flex-col sm:flex-row items-center">
-                                        <img className="h-30 w-30 mr-4" src={`${variant.variantImage}?x-oss-process=image/format,webp,image/resize,m_fill,w_150,h_150`} alt="Image" />
+                                    <div className="flex sm:flex-row xxs:flex-col items-center">
+                                        <img className="mr-4 w-[210px] h-[190px]" width={150} height={150} loading="lazy" src={`${variant.variantImage}?x-oss-process=image/format,webp,image/resize,m_fill,w_150,h_150`} alt="Image" />
                                         <div className="flex xxs:mt-5 sm:mt-0 justify-between flex-col space-y-1">
                                         <span className="font-semibold border-b">{variant.variantNameEn}</span>
                                         <span>Weight: {variant.variantWeight}g</span>

@@ -382,6 +382,9 @@ const Purchase = () => {
                     required
                     placeholder="Province"
                     className="w-full rounded-md border border-gray-200 px-3 py-3 text-sm shadow-sm outline-none focus:z-10 focus:border-[rgb(243,104,29)] focus:ring-[rgb(243,104,29)]" />   
+                    </div> 
+
+                    <div className="w-full xxs:flex-col sm:flex-row flex items-center">
                     <input
                     id="city"
                     name="city"
@@ -393,7 +396,16 @@ const Purchase = () => {
                     required
                     placeholder="City"
                     className="w-full rounded-md border border-gray-200 px-3 py-3 text-sm shadow-sm outline-none focus:z-10 focus:border-[rgb(243,104,29)] focus:ring-[rgb(243,104,29)]" />    
-                    </div>                  
+
+                      <input
+                        id="house"
+                        name="house"
+                        onChange={(e) => setHouseNumber(e.target.value)}
+                        value={houseNumber}
+                        type="number"
+                        placeholder="House number"
+                        className="w-full rounded-md border border-gray-200 px-3 py-3 text-sm shadow-sm outline-none focus:z-10 focus:border-[rgb(243,104,29)] focus:ring-[rgb(243,104,29)]" />
+                      </div>
                     <div className="w-full xxs:flex-col sm:flex-row flex items-center">
                     <input
                         id="zip"
@@ -404,17 +416,7 @@ const Purchase = () => {
                         placeholder="Zip code"
                         required
                         className={`w-full rounded-md border ${warning.includes("post code") ? "border-red-600" : "border-gray-200"} px-3 py-3 text-sm shadow-sm outline-none focus:z-10 focus:border-[rgb(243,104,29)] focus:ring-[rgb(243,104,29)]`} />
-                        <input
-                        id="house"
-                        name="house"
-                        onChange={(e) => setHouseNumber(e.target.value)}
-                        value={houseNumber}
-                        type="number"
-                        placeholder="House number"
-                        className="w-full rounded-md border border-gray-200 px-3 py-3 text-sm shadow-sm outline-none focus:z-10 focus:border-[rgb(243,104,29)] focus:ring-[rgb(243,104,29)]" />
-                    <div className="relative xxs:w-full">
                       <input name="address" required onChange={(e) => setStreetAddress(e.target.value)} value={streetAddress} type="text" className={`w-full rounded-md border ${warning === "The address cannot consist of numbers only." ? "border-red-600" : "border-gray-200"} px-3 py-3 text-sm shadow-sm outline-none focus:z-10 focus:border-[rgb(243,104,29)] focus:ring-[rgb(243,104,29)]`} placeholder="Shipping address" />
-                    </div>
                     </div>
                 </div>
             <div className="mt-6 border-t border-b py-2">
@@ -440,7 +442,7 @@ const Purchase = () => {
                   <img src={exclamationTriangle} alt="warning"></img>
                   <p className="text-sm">Your 1 request per 10 second limit has been reached.</p>
               </div>}
-            <button type='submit' className="mt-2 mb-2 w-full hover:bg-gray-800 rounded-md bg-gray-900 px-6 py-3 font-medium text-white">Prcoeed to payment</button>
+            <button type='submit' className="mb-4 w-full hover:bg-gray-800 rounded-md bg-gray-900 px-6 py-3 font-medium text-white">Prcoeed to payment</button>
         </div>
       </form>
       <div className="mt-14">

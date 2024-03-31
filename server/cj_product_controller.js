@@ -72,7 +72,6 @@ const get_variant = async (req, res, next) => {
 
 const query_order = async (req, res, next) => {
     try {   
-        console.log(req.session)
         if (!req.session.order_id) {
             throw new exntendedError("Payment Session Expired.", 400)
         }
