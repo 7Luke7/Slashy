@@ -20,11 +20,12 @@ router.post("/orders", async (req, res) => {
   });
 
 router.post("/payment/capture", async (req, res) => {
+  console.log(req)
     try {
-      const { orderID, cj_order } = req.params;
+      const { orderID, cj_order } = req.body;
       const { jsonResponse, httpStatusCode } = await captureOrder(orderID);
 
-      const new_purchase = new Purchase({...jsonResponse, ...cj_order})
+      const new_purchase = new Purchase({...jsonResponse, cj_order: cj_order})
       await new_purchase.save()
 
       res.status(httpStatusCode).json(jsonResponse);
