@@ -105,7 +105,7 @@ export const MediaCarousel = memo(({product, curr, setCurr, id}) => {
     })
 
     return <Fragment>
-        <div className="w-full xl:w-[450px] h-full">
+        <div className="w-full lg:w-[400px] xl:w-[450px] h-full">
         {curr && curr.imageURL && curr.imageURL.includes(".mp4") ? <div className="relative outline-none w-full h-full">
             <video src={curr.imageURL} playsInline width={854} height={480} alt="მთავარი ვიდეო" autoPlay controls muted className="w-full xxs:h-[400px] lg:h-[450px] aspect-video object-contain object-center">
             </video>
@@ -121,7 +121,7 @@ export const MediaCarousel = memo(({product, curr, setCurr, id}) => {
                     return
                 }
             }}  
-            className="w-full rounded-t xxs:h-[400px] lg:h-[450px] xl:w-[450px] xxs:object-contain lg:object-cover">
+            className="w-full rounded-t xxs:h-[400px] lg:h-[450px] lg:w-[400px] xl:w-[450px] xxs:object-contain lg:object-cover">
         </img> : <div className="bg-gray-200 rounded-t lg:w-[400px] xl:w-[450px] xxs:h-[400px] lg:h-[450px]"></div>}
         </div>
         <div className="relative xxs:min-h-[100px] border-b-0 border-l-0 border-r-0 border lg:min-h-[60px] w-full">

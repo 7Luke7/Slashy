@@ -89,7 +89,7 @@ export const SearchProducts = ({category_id, page, isVideo, isAsc, fieldType, co
       }, [category_id])
 
       useEffect(() => {
-        document.title = keyword ? `${keyword} - ყიდვა` : `${keywords} - Slashy`
+        document.title = keyword ? `${keyword} - Search` : `${keywords} - Slashy`
       }, [keywords])
 
       const productListLength = products && products.content[0].productList.length
@@ -122,6 +122,16 @@ export const SearchProducts = ({category_id, page, isVideo, isAsc, fieldType, co
         return <Fragment> 
           <div className="flex gap-y-2 gap-x-1 flex-wrap xxs:justify-center lg:justify-between">
            {products.content[0].productList.map((p, i) => {
+            if (p.sellPrice) {
+              if (p.sellPrice.includes('--')) {
+                  const sellPriceRange = p.sellPrice.split('--');
+                  const newSellPriceMin = Number(sellPriceRange[0]) * 1.31;
+                  const newSellPriceMax = Number(sellPriceRange[1]) * 1.31;
+                  p.sellPrice = newSellPriceMin.toFixed(2) + '--' + newSellPriceMax.toFixed(2);
+              } else {
+                p.sellPrice = (Number(p.sellPrice) * 1.31).toFixed(2);
+              }
+          }
           return <Fragment key={i}>
               <SearchProduct p={p}></SearchProduct>
             </Fragment>})}

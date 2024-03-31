@@ -14,9 +14,10 @@ import Purchase from "./purchase/Purchase"
 import Category from "./category/Category"
 import About from "./about/About";
 import { PayPalScriptProvider } from "@paypal/react-paypal-js";
+import ProcessPurchase from "./purchase/ProcessPurchase";
 
 const initialOptions = {
-  clientId: "AUragTfTfjoTv77lUFP3Aq_dHGUOeVT3jvTN4P7v0DoRpqMz5na1fSXUOhJGZz8hqLrc7dE2LOTQQDJV",
+  clientId: process.env.REACT_APP_PAYPAL_CLIENT_ID,
   currency: "USD",
   intent: "capture",
 };
@@ -35,6 +36,7 @@ const App = () => {
     <Route path="category" element={<Category />} />
     <Route path="purchase" element={<Purchase />} />
     <Route path="about" element={<About />} />
+    <Route path="purchase/:id" element={<ProcessPurchase />} />
   </Routes>
 </BrowserRouter>
   </PayPalScriptProvider>

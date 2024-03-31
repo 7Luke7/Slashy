@@ -2,6 +2,7 @@ import { useState } from "react"
 
 export const Product = ({product}) => {
     const [isLoading, setIsLoading] = useState(true)
+
     return <div className="xs:w-[150px] sm:w-[160px] md:w-[140px] mobl:w-[170px] xxs:w-[200px] lg:w-[140px] xl:w-[180px]  relative lg:hover:scale-[1.02]">
     <a href={`product/${product.productId}`}>
     <img

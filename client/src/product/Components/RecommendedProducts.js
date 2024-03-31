@@ -72,6 +72,16 @@ const RecommendedProducts = memo(({id}) => {
             <p className="text-lg xxs:text-center lg:text-start">Recommended Products</p>
     <div className="lg:justify-between xxs:justify-evenly gap-y-4 flex-grow flex flex-wrap mt-5">
       {recommendedProducts && recommendedProducts.map((product, i) => {
+        if (product.sellPrice) {
+            if (product.sellPrice.includes('--')) {
+                const sellPriceRange = product.sellPrice.split('--');
+                const newSellPriceMin = Number(sellPriceRange[0]) * 1.31;
+                const newSellPriceMax = Number(sellPriceRange[1]) * 1.31;
+                product.sellPrice = newSellPriceMin.toFixed(2) + '--' + newSellPriceMax.toFixed(2);
+            } else {
+                product.sellPrice = (Number(product.sellPrice) * 1.31).toFixed(2);
+            }
+        }
           return <Fragment key={i}><RecomProducts product={product} i={i}></RecomProducts></Fragment>
         })}
     </div>

@@ -54,7 +54,6 @@ class CJClient {
     }
 
     async createRequest(url, method, payload) {
-        console.log(payload)
         if (!this.accessToken) {
             throw new Error('CJClient class not initialized');
         }

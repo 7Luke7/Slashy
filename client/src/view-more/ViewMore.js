@@ -30,7 +30,6 @@ const Page = () => {
                 head_url.url += "https://cjdropshipping.com/elastic-api/cj/homePage/v2/selectNewProductList"
                 head_url.body = JSON.stringify({"timeFlag": "video", "pageSize": 50})
             }
-            console.log(head_url.url)
             const request = await fetch(head_url.url, {
                 method: "POST",
                 credentials: "omit",

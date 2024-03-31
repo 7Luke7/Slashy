@@ -1,6 +1,6 @@
 import { Fragment, memo } from "react"
 
-export const OrderSummary = memo(({setWarehouseCountryCode, deliveryLoading, closeModal, setCloseModal, productFetchError, fetchInventoryError, warehouseCountryCode, variant, inventory, changeLogistic, selectedLogistic, logisticError, areas, variant_sell_price, BringServiceLoading, BringService}) => {
+export const OrderSummary = memo(({setWarehouseCountryCode, deliveryLoading, closeModal, setCloseModal, productFetchError, fetchInventoryError, warehouseCountryCode, variant, inventory, changeLogistic, selectedLogistic, logisticError, areas, BringServiceLoading, BringService}) => {
     return <div className="px-4 flex flex-col pt-8">
       {productFetchError ? <h1 className="text-center pt-20 text-gray-900 text-md font-semibold">{!productFetchError.length ? "We had an error while fetching product. try later." : productFetchError}</h1> : <Fragment>
       <p className="text-xl font-medium">Order summary</p>
@@ -13,14 +13,14 @@ export const OrderSummary = memo(({setWarehouseCountryCode, deliveryLoading, clo
           <h1 className="font-bold">{variant.NAMEEN && variant.NAMEEN.slice(0, 100) || "Without title"}...</h1>
             <Fragment>
               <p className="text-gray-500 text-md">{variant.VARIANTKEY}</p>
-              <p id="price" className="text-lg text-[rgb(255,128,64)] font-bold">${Number(variant_sell_price).toFixed(2)}</p>
+              <p id="price" className="text-lg text-[rgb(255,128,64)] font-bold">${variant.SELLPRICE}</p>
             </Fragment>
       </div>
       </div>
       </div>}
     </Fragment>}
 
-  {fetchInventoryError ? <h1 className="text-center pt-20 text-gray-900 text-md font-semibold">{!logisticError.length ? "We had an error while fetching inventory. try later." : logisticError}</h1> : <div className="xxs:mb-5 lg:mb-0">
+  {fetchInventoryError ? <h1 className="text-center pt-20 text-gray-900 text-md font-semibold">{!logisticError.length ? "We had an error while fetching inventory. try later." : logisticError + "try refreshing the page."}</h1> : <div className="xxs:mb-5 lg:mb-0">
       <div className="flex mt-8 items-center justify-between">
         <p className="text-lg font-medium">Delivery service</p>
         {areas.length > 0 && <select className="border outline-none" onChange={(e) => setWarehouseCountryCode(e.target.value)}>
