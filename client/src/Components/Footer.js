@@ -24,11 +24,12 @@ export const Footer = () => {
     <main className="list-none flex flex-col gap-3">
           <h2 className="text-sm font-[600] text-gray-900">Payments</h2>
           <hr className="border-1 border-[rgb(251,77,1)]" />
-          <li className="text-xs font-[600] text-gray-700">
+          <li>
             <a href="#" onClick={handlePaypalClick}>
               <img
                 src="https://www.paypalobjects.com/webstatic/mktg/logo/pp_cc_mark_37x23.jpg"
                 border="0"
+                width="40"
                 alt="PayPal Logo"
               />
             </a>
