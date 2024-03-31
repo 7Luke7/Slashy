@@ -11,8 +11,8 @@ const make_order = async (req, res, next) => {
 
         if (req.session.order_id) {
             const delete_order_request = await new CJClient().createRequest(`https://developers.cjdropshipping.com/api2.0/v1/shopping/order/deleteOrder?orderId=${req.session.order_id}`, "DELETE")
-
-            req.session.destroy()
+            // check this
+            req.session.order_id = null
         }
 
         const make_order_request = await new CJClient().createRequest("https://developers.cjdropshipping.com/api2.0/v1/shopping/order/createOrder", "POST", {orderNumber: orderNumber, ...target_product})
@@ -26,6 +26,7 @@ const make_order = async (req, res, next) => {
         req.session.cookie.maxAge = dayinms;
         res.status(200).json({data: make_order_request.data})
     } catch (error) {
+        console.log("error:", error)
         next(error)
     }
 }
@@ -41,7 +42,7 @@ const delete_order = async (req, res, next) => {
             throw new exntendedError("Failed creating order.", 500)
         }
 
-        req.session.destroy()
+        req.session.order_id = null
 
         res.status(200).json(delete_order_request)
     } catch (error) {
@@ -102,8 +103,8 @@ const payment_and_order = async (req, res, next) => {
     try {
         const request_payment = await Purchase.findById(req.params.id)
 
-        if (req.session) {
-            req.session.destroy()
+        if (req.session.order_id) {
+            req.session.order_id = null
         }
 
         if(!request_payment) {
