@@ -2,7 +2,7 @@ require("dotenv").config()
 const exntendedError = require("../errors/ExtendedError");
 
 const { PAYPAL_CLIENT_ID, PAYPAL_SECRET } = process.env;
-const base = "https://api-m.sandbox.paypal.com";
+const base = "https://api-m.paypal.com";
 
 const generateAccessToken = async (next) => {
   try {
@@ -29,8 +29,6 @@ const generateAccessToken = async (next) => {
 };
 
 const createOrder = async (cost) => {
-  // use the cart information passed from the front-end to calculate the purchase unit details
-
   try {
     const accessToken = await generateAccessToken();
   const url = `${base}/v2/checkout/orders`;
