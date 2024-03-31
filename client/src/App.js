@@ -12,9 +12,9 @@ import Search from "./search/Search";
 import Product from "./product/Product";
 import Purchase from "./purchase/Purchase"
 import Category from "./category/Category"
-import About from "./about/About";
 import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 import ProcessPurchase from "./purchase/ProcessPurchase";
+import { TrackingInfo } from "./tracking/TrackingInfo";
 
 const initialOptions = {
   clientId: process.env.REACT_APP_PAYPAL_CLIENT_ID,
@@ -35,8 +35,8 @@ const App = () => {
     <Route path="product/:id" element={<Product />} />
     <Route path="category" element={<Category />} />
     <Route path="purchase" element={<Purchase />} />
-    <Route path="about" element={<About />} />
     <Route path="purchase/:id" element={<ProcessPurchase />} />
+    <Route path="tracking" element={<TrackingInfo />} />
   </Routes>
 </BrowserRouter>
   </PayPalScriptProvider>

@@ -4,24 +4,36 @@ import Instagram from "../public/instagram.svg"
 import envelopeFill from "../public/envelope-fill.svg"
 
 export const Footer = () => {
+    const handlePaypalClick = () => {
+        window.open(
+          'https://www.paypal.com/webapps/mpp/paypal-popup',
+          'WIPaypal',
+          'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=yes, width=1060, height=700'
+        );
+      };
     return <div className="w-full bg-[rgb(242,242,242)]">
     <div className="sm:w-[70%] xxs:w-[100%] xxs:grid xxs:grid-cols-2 p-5 flex-wrap xxs:gap-5 lg:gap-0 lg:flex justify-evenly m-auto">
     <main className="list-none flex flex-col gap-3">
     <h2 className="text-sm font-[600] text-gray-900">Navigation</h2>
     <hr className="border-1 border-[rgb(251,77,1)]" />
     <li className="text-xs font-[600] text-gray-700">
-        <a href="/about">About us</a>
+        <a href="/tracking">Tracking product</a>
     </li>
 
 </main>
 <main className="list-none flex flex-col gap-3">
-    <h2 className="text-sm font-[600] text-gray-900">Payments</h2>
-    <hr className="border-1 border-[rgb(251,77,1)]" />
-
-    <li className="text-xs font-[600] text-gray-700">
-        <a href="/payments">Payment Methods</a>
-    </li>
-</main>
+          <h2 className="text-sm font-[600] text-gray-900">Payments</h2>
+          <hr className="border-1 border-[rgb(251,77,1)]" />
+          <li className="text-xs font-[600] text-gray-700">
+            <a href="#" onClick={handlePaypalClick}>
+              <img
+                src="https://www.paypalobjects.com/webstatic/mktg/logo/pp_cc_mark_37x23.jpg"
+                border="0"
+                alt="PayPal Logo"
+              />
+            </a>
+          </li>
+        </main>
 <main className="list-none flex flex-col gap-3">
     <h2 className="text-sm font-[600] text-gray-900">Follow us</h2>
     <hr className="border-1 border-[rgb(251,77,1)]" />

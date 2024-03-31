@@ -210,7 +210,7 @@ const ProcessPurchase = () => {
               <h3 className="md:text-2xl text-base text-gray-900 font-semibold text-center">Payment processed Successfully!</h3>
               <ul className="flex flex-col items-start">
                 <li className="overflow-hidden break-all">Payment Id: {paymentDone.id}</li>
-                <li className="overflow-hidden break-all">Order Id: {order.orderNum}</li>
+                <li className="overflow-hidden break-all">Order Id: {order.orderId}</li>
               </ul>
               <p className="text-gray-600 my-2 font-bold">If you want to track your order please send payment id and order id to our email: info@slashy.store</p>
               <div className="py-5 text-center">
