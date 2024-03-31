@@ -7,6 +7,21 @@ const make_order = async (req, res, next) => {
     try {
         const target_product = req.body
         const orderNumber = crypto.randomBytes(20).toString('hex');
+        const RATE_LIMIT_TIME_WINDOW = 10000;
+        let lastRequestTime = 0;
+
+        if (Date.now() - lastRequestTime < RATE_LIMIT_TIME_WINDOW) {
+            throw new exntendedError("Please wait before making another request.", 429);
+        }
+
+        lastRequestTime = Date.now();
+
+        if (currentTime - lastRequestTime < RATE_LIMIT_TIME_WINDOW) {
+            requestCount++;
+            if (requestCount > MAX_REQUESTS_PER_WINDOW) {
+                throw new exntendedError("Too many requests. Please try again later.", 429);
+            }
+        }
 
         if (req.session.order_id) {
             const delete_order_request = await new CJClient().createRequest(`https://developers.cjdropshipping.com/api2.0/v1/shopping/order/deleteOrder?orderId=${req.session.order_id}`, "DELETE")

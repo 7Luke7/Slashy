@@ -159,8 +159,16 @@ const Purchase = () => {
         })
   
         const order_response = await make_order_request.json()
+
+        if (order_response.status === 429) {
+          throw new Error(429)
+        }
+
         navigate(`/purchase/${order_response.data}`)
       } catch (error) {
+        if (error.message === "429") {
+          return alert("Too much request. wait a second.")
+        }
         alert("Server error please try again.")        
       }
     }
