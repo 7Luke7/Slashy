@@ -24,6 +24,7 @@ const make_order = async (req, res, next) => {
         req.session.order_id = make_order_request.data
         const dayinms = 86400000;
         req.session.cookie.maxAge = dayinms;
+        req.session.cookie.sameSite = 'Strict';
         res.status(200).json({data: make_order_request.data})
     } catch (error) {
         console.log("error:", error)
@@ -71,6 +72,7 @@ const get_variant = async (req, res, next) => {
 
 const query_order = async (req, res, next) => {
     try {   
+        console.log(req.session)
         if (!req.session.order_id) {
             throw new exntendedError("Payment Session Expired.", 400)
         }
