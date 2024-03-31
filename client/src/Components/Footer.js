@@ -21,7 +21,7 @@ export const Footer = () => {
     </li>
 
 </main>
-<main className="list-none flex flex-col gap-3">
+    <main className="list-none flex flex-col gap-3">
           <h2 className="text-sm font-[600] text-gray-900">Payments</h2>
           <hr className="border-1 border-[rgb(251,77,1)]" />
           <li className="text-xs font-[600] text-gray-700">

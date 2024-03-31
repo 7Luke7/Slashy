@@ -420,11 +420,14 @@ const Purchase = () => {
                   <img src={exclamationTriangle} alt="warning"></img>
                   <p className="text-sm">{warning}</p>
               </div>}
-            <button type='submit' className="mt-2 w-full hover:bg-gray-800 rounded-md bg-gray-900 px-6 py-3 font-medium text-white">Prcoeed to payment</button>
+            <button type='submit' className="mt-2 mb-2 w-full hover:bg-gray-800 rounded-md bg-gray-900 px-6 py-3 font-medium text-white">Prcoeed to payment</button>
         </div>
       </form>
         </Fragment>
       }
+      <div className="mt-14">
+      <Footer></Footer>
+      </div>
     </Fragment>
 }
 

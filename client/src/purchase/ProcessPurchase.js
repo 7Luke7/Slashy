@@ -191,7 +191,7 @@ const ProcessPurchase = () => {
                 <div className="min-h-[70vh] flex items-center justify-center">
                     <div className="flex flex-col items-center space-y-2">
                         <p>Order removed.</p>
-                        <button onClick={() => window.history.go(-1)} className="rounded py-1 px-2 bg-[#fd5702] w-[120px]">Go back</button>
+                        <a href="/purchase" className="rounded py-1 px-2 bg-[#fd5702] w-[120px]">Go to purchase</a>
                     </div>
                 </div>
                 <Footer></Footer>
