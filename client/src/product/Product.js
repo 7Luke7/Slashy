@@ -26,7 +26,7 @@ const Product = () => {
     useEffect(() => {
         const getProductDetail = async () => {
             try {
-            const request = await fetch("https://m.cjdropshipping.com/elastic-api/cjProductInfo/v2/getProductDetail/5", {
+            const request = await fetch("https://m.cjdropshipping.com/elastic-api/cjProductInfo/v2/getProductDetail", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
