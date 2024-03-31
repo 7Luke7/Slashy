@@ -1,19 +1,19 @@
 import { useEffect, useMemo, useState } from "react"
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { PayPalButtons } from "@paypal/react-paypal-js";
 import { Footer } from "../Components/Footer";
 import { Header } from "../Components/Header";
 import loading from "../public/loading-loader.svg"
-import check from "../public/check-success.svg"
 
 const ProcessPurchase = () => {   
     const [order, setOrder] = useState()
     const [globalLoading, setGlobalLoading] = useState()
     const [variant, setVariant] = useState()
     const [orderRemoved, setOrderRemoved] = useState(false)
-    const [paymentDone, setPaymentDone] = useState()
+    const [paymentSessionExpired, setPaymentSessionExpired] = useState()
 
     const {id} = useParams()
+    const navigate = useNavigate()
 
     useEffect(() => {
         window.scrollTo(0, 0)
@@ -40,7 +40,7 @@ const ProcessPurchase = () => {
             } catch (error) {
                 setGlobalLoading(false)
                 if (Number(error.message) === 400) {
-                    return alert("Couldn't retrieve the product")
+                    return setPaymentSessionExpired(true)
                 }
                 alert(error.message)
             }
@@ -115,43 +115,11 @@ const ProcessPurchase = () => {
             })
             const response_data = await request.json()
 
-            setPaymentDone(response_data)
+            navigate(`/payment/${response_data.purchase_id}`)
         } catch (error) {
             alert("Error while approving payment.")
         }
     };
-
-    useEffect(() => {
-        if (!paymentDone) {
-            return
-        } 
-
-        const delete_order_request = async () => {
-            try {
-                const delete_order_request = await fetch(`${process.env.REACT_APP_SERVER_URL}/api/delete_order/${order.orderId}`, {
-                    method: "DELETE",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    credentials: "include",
-                })
-        
-                if (!delete_order_request.ok) {
-                    throw new Error("Server error occured")
-                }
-        
-                const data = await delete_order_request.json()
-        
-                if (!data.status === "success") {
-                    alert("Something went wrong while removing order")(true)
-                }
-            } catch (error) {
-                alert(error.message)
-            }
-        }
-
-        delete_order_request()
-    }, [paymentDone])
     
     const remove_order = async () => {
         if (!order) {
@@ -197,34 +165,7 @@ const ProcessPurchase = () => {
                 </div>
                 <Footer></Footer>
             </>
-        } else if (paymentDone) {
-            return <>
-            <Header></Header>
-            <div className="justify-center flex items-center h-[70vh]">
-        <div className="bg-white p-6  md:mx-auto">
-              <div className="flex justify-center">
-                <div className="rounded-[50%] bg-[#B3FFAE]">
-                <img src={check} loading="lazy" alt="success"></img>
-                </div>
-              </div>
-          <div className="text-center w-[350px]">
-              <h3 className="md:text-2xl text-base text-gray-900 font-semibold text-center">Payment processed Successfully!</h3>
-              <ul className="flex flex-col items-start">
-                <li className="overflow-hidden break-all">Payment Id: {paymentDone.id}</li>
-                <li className="overflow-hidden break-all">Order Id: {order.orderId}</li>
-              </ul>
-              <p className="text-gray-600 my-2 font-bold">If you want to track your order please send payment id and order id to our email: info@slashy.store</p>
-              <div className="py-5 text-center">
-                  <a href="/" className="rounded px-12 bg-[#fd5702] text-white font-semibold py-3">
-                    Go to home page
-                 </a>
-              </div>
-          </div>
-      </div>
-    </div>
-            <Footer></Footer>
-          </>
-        } else if(variant || order && !orderRemoved && !paymentDone) {
+        } else if(variant || order && !orderRemoved) {
             return <div className="bg-gray-100 mobl:px-4 xs:px-2 flex items-center min-h-screen justify-center py-8">
                  <div className="flex items-center flex-col gap-4">
             <div className="max-w-[800px]">
@@ -303,17 +244,17 @@ const ProcessPurchase = () => {
             </div>
         </div>
         </div>
-        } else {
+        } else if(paymentSessionExpired) {
             return <>
             <Header></Header>
                 <div className="h-[60vh] flex items-center justify-center flex-col">
-                <p>Something went wrong.</p>
-                <button onClick={() => window.history.go(-1)} className="text-sm bg-red-600 px-4 rounded py-2 font-semibold">Go back</button>
+                <p>Payment Session Expired.</p>
+                <a href="/purchase" className="rounded py-1 px-2 bg-[#fd5702]">Go to purchase</a>
                 </div>
             <Footer></Footer>
             </>
         }
-    }, [globalLoading, paymentDone, orderRemoved, variant, order])
+    }, [globalLoading, paymentSessionExpired, orderRemoved, variant, order])
     return render
 }
 

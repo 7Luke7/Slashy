@@ -79,7 +79,7 @@ class CJClient {
             }
             return this.processResponse(data);
         } catch (error) {
-            console.log(error)
+            console.log(error.message)
             throw new Error(`CURL request failed after ${this.maxNetworkRetries} attempts: ${error.message}`, 500);
         }
     }

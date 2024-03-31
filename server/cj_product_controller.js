@@ -2,33 +2,15 @@ require("dotenv").config()
 const CJClient = require("./cj_authentication/cj_authentication");
 const crypto = require("node:crypto");
 const exntendedError = require("./errors/ExtendedError");
+const { Purchase } = require("./models/model");
 
 const make_order = async (req, res, next) => {
     try {
         const target_product = req.body
         const orderNumber = crypto.randomBytes(20).toString('hex');
-        const RATE_LIMIT_TIME_WINDOW = 10000;
-        let lastRequestTime = 0;
-
-        if (Date.now() - lastRequestTime < RATE_LIMIT_TIME_WINDOW) {
-            throw new exntendedError("Please wait before making another request.", 429);
-        }
-
-        lastRequestTime = Date.now();
-
-        if (currentTime - lastRequestTime < RATE_LIMIT_TIME_WINDOW) {
-            requestCount++;
-            if (requestCount > MAX_REQUESTS_PER_WINDOW) {
-                throw new exntendedError("Too many requests. Please try again later.", 429);
-            }
-        }
 
         if (req.session.order_id) {
             const delete_order_request = await new CJClient().createRequest(`https://developers.cjdropshipping.com/api2.0/v1/shopping/order/deleteOrder?orderId=${req.session.order_id}`, "DELETE")
-
-            if (delete_order_request.status === "failed") {
-                throw new exntendedError("Failed creating order.", 500)
-            }
 
             req.session.destroy()
         }
@@ -42,7 +24,6 @@ const make_order = async (req, res, next) => {
         req.session.order_id = make_order_request.data
         const dayinms = 86400000;
         req.session.cookie.maxAge = dayinms;
-
         res.status(200).json({data: make_order_request.data})
     } catch (error) {
         next(error)
@@ -117,9 +98,28 @@ const query_order = async (req, res, next) => {
     }
 }
 
+const payment_and_order = async (req, res, next) => {
+    try {
+        const request_payment = await Purchase.findById(req.params.id)
+
+        if (req.session) {
+            req.session.destroy()
+        }
+
+        if(!request_payment) {
+            throw new exntendedError("Purchase cannot be found.", 400)
+        }
+
+        res.status(200).json(request_payment)
+    } catch (error) {
+        next(error)
+    }
+}
+
 module.exports = {
     make_order,
     query_order,
     get_variant,
-    delete_order
+    delete_order,
+    payment_and_order
 }

@@ -40,6 +40,7 @@ const Purchase = () => {
     const [sessionExpiredError, setSessionExpiredError] = useState()
     const [fetchInventoryError, setFetchInventoryError] = useState()
     const [warning, setWarning] = useState("")
+    const [rateLimitError, setRateLimitError] = useState()
 
     const navigate = useNavigate()
 
@@ -157,19 +158,26 @@ const Purchase = () => {
           credentials: "include",
           body: JSON.stringify(payload)
         })
+
+        if (!make_order_request.ok) {
+          const errorMessage = await make_order_request.text();
+          throw new Error(errorMessage);
+        }
   
         const order_response = await make_order_request.json()
 
-        if (order_response.status === 429) {
-          throw new Error(429)
-        }
-
         navigate(`/purchase/${order_response.data}`)
       } catch (error) {
-        if (error.message === "429") {
-          return alert("Too much request. wait a second.")
+        if (error.message === 'Your 1 request per 10 second limit has been reached. try again.') {
+          setRateLimitError(true)
+          const timeout_id = setTimeout(() => {
+            setRateLimitError(false)
+          }, 10000)
+  
+          clearTimeout(timeout_id)
+        } else {
+          alert(error.message)
         }
-        alert("Server error please try again.")        
       }
     }
 
@@ -427,6 +435,10 @@ const Purchase = () => {
             {warning && <div className="flex bg-red-600 p-2 gap-x-2 items-center">
                   <img src={exclamationTriangle} alt="warning"></img>
                   <p className="text-sm">{warning}</p>
+              </div>}
+              {rateLimitError && <div className="flex bg-red-600 p-2 gap-x-2 items-center">
+                  <img src={exclamationTriangle} alt="warning"></img>
+                  <p className="text-sm">Your 1 request per 10 second limit has been reached.</p>
               </div>}
             <button type='submit' className="mt-2 mb-2 w-full hover:bg-gray-800 rounded-md bg-gray-900 px-6 py-3 font-medium text-white">Prcoeed to payment</button>
         </div>

@@ -1,8 +1,9 @@
 require("dotenv").config()
 const exntendedError = require("../errors/ExtendedError");
 
-const { PAYPAL_CLIENT_ID, PAYPAL_SECRET } = process.env;
-const base = "https://api-m.paypal.com";
+const { PAYPAL_CLIENT_ID, PAYPAL_SECRET, PAYPAL_BASE_URL } = process.env;
+
+const base = PAYPAL_BASE_URL
 
 const generateAccessToken = async (next) => {
   try {
