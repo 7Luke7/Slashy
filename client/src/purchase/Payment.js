@@ -40,18 +40,18 @@ export const Payment = () => {
         if (order && order.status !== 400) {
             return <>
                 <Header></Header>
-                <div className="justify-center flex items-center h-[70vh]">
-            <div className="bg-white p-6  md:mx-auto">
+                <div className="justify-center flex overflow-x-hidden items-center h-[70vh]">
+            <div className="bg-white p-6 md:mx-auto">
                   <div className="flex justify-center">
                     <div className="rounded-[50%] bg-[#B3FFAE]">
                     <img src={check} loading="lazy" alt="success"></img>
                     </div>
                   </div>
-              <div className="text-center xxs:w-[350px] sm:w-[400px] lg:w-[500px]">
+              <div className="text-center xxs:w-[250px] sm:w-[400px] lg:w-[500px]">
                   <h3 className="md:text-2xl text-base text-gray-900 font-semibold text-center">Thanks for purchase!</h3>
                   <ul className="border-b">
-                    <li className="overflow-hidden break-all">Payment Id: {id}</li>
-                    <li className="overflow-hidden break-all">Order number: {order.cj_order.orderNum}</li>
+                    <li className="overflow-hidden break-all">Payment Id: <span className="text-xs">{id}</span></li>
+                    <li className="overflow-hidden break-all">Order number: <span className="text-xs">{order.cj_order.orderNum}</span></li>
                   </ul>
                   <p className="text-gray-600 my-2 font-bold">If you want to track your order please send payment id and order id to our email: info@slashy.store</p>
                   <div className="py-5 text-center">

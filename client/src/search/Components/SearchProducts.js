@@ -139,7 +139,7 @@ export const SearchProducts = ({category_id, page, isVideo, isAsc, fieldType, co
           <Pagination page={page} total={products.totalPages}></Pagination>
           </Fragment>
       } else if (productListLength === 0) {
-        return <div className="flex items-center justify-center"><h1>No Products Found.</h1></div>
+        return <div className="flex items-center min-h-[50vh] justify-center"><h1>No Products Found.</h1></div>
       }
     }, [isLoading])
 
