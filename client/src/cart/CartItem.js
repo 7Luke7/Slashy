@@ -59,7 +59,7 @@ export const CartItem = ({v, i, cartItemDelete}) => {
 
         <div className="flex flex-col gap-2">
           <div className="flex items-end justify-between">
-              <span itemProp="price" className="text-[rgb(251,77,1)] font-bold text-base">Price: {v.SELLPRICE * quantity}</span>
+              <span itemProp="price" className="text-[rgb(251,77,1)] font-bold text-base">Price: ${v.SELLPRICE * quantity}</span>
               <div className="flex mt-2 items-center">
                   <button onClick={() => setQuantity(q => q - 1)} disabled={quantity === 1} className="border px-5 flex items-center justify-center border-gray-200 w-8 cursor-pointer outline-none">
                       <span className="font-thin">−</span>

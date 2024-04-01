@@ -11,8 +11,8 @@ const make_order = async (req, res, next) => {
 
         if (req.session.order_id) {
             const delete_order_request = await new CJClient().createRequest(`https://developers.cjdropshipping.com/api2.0/v1/shopping/order/deleteOrder?orderId=${req.session.order_id}`, "DELETE")
-            // check this
-            req.session.order_id = null
+
+            req.session.order_id = null 
         }
 
         const make_order_request = await new CJClient().createRequest("https://developers.cjdropshipping.com/api2.0/v1/shopping/order/createOrder", "POST", {orderNumber: orderNumber, ...target_product})
@@ -24,7 +24,7 @@ const make_order = async (req, res, next) => {
         req.session.order_id = make_order_request.data
         const dayinms = 86400000;
         req.session.cookie.maxAge = dayinms;
-        req.session.cookie.sameSite = 'none';
+        // req.session.cookie.sameSite = 'none';
         res.status(200).json({data: make_order_request.data})
     } catch (error) {
         console.log("error:", error)

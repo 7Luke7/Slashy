@@ -7,13 +7,13 @@ const {captureOrder, createOrder} = require("./payments/processPayment")
 const limiter = rateLimit({
 	windowMs: 10000,
 	limit: 1,
-  message: "Your 1 request per 10 second limit has been reached. try again.",
+  message: "Your request limit has been reached. try again.",
 	standardHeaders: 'draft-7',
 	legacyHeaders: false,
 })
 router.get("/payment/:id", payment_and_order)
 router.post("/make_cj_order", limiter, make_order)
-router.delete("/delete_order/:id", delete_order)
+router.delete("/delete_order/:id", limiter, delete_order)
 router.get("/query_order", query_order)
 router.get("/get_variant/:id", get_variant)
 router.post("/orders", async (req, res) => {

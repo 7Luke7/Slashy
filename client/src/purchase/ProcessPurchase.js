@@ -24,6 +24,7 @@ const ProcessPurchase = () => {
             try {
                 const query_order_request = await fetch(`${process.env.REACT_APP_SERVER_URL}/api/query_order`, {
                     method: "GET",
+                    cache: "no-store",
                     headers: {
                         "Content-Type": "application/json"
                     },
@@ -60,6 +61,7 @@ const ProcessPurchase = () => {
                 const query_order_request = await fetch(`${process.env.REACT_APP_SERVER_URL}/api/get_variant/${vid}`, {
                     method: "GET",
                     credentials: "include",
+                    cache: "no-store",
                 })
 
                 if (!query_order_request.ok) {
