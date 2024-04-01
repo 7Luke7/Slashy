@@ -13,7 +13,7 @@ const compression = require("compression")
 const connect_database = require("./database")
 
 app.use(compression({
-    level: 9
+    level: 1
 }))
 
 app.set('trust proxy', 1);
