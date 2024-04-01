@@ -168,11 +168,11 @@ const Purchase = () => {
 
         navigate(`/purchase/${order_response.data}`)
       } catch (error) {
-        if (error.message === 'Your 1 request per 10 second limit has been reached. try again.') {
+        if (error.message === 'Your request limit has been reached. try again after 5 seconds.') {
           setRateLimitError(true)
           const timeout_id = setTimeout(() => {
             setRateLimitError(false)
-          }, 10000)
+          }, 5000)
   
           clearTimeout(timeout_id)
         } else {
@@ -440,9 +440,9 @@ const Purchase = () => {
               </div>}
               {rateLimitError && <div className="flex bg-red-600 p-2 gap-x-2 items-center">
                   <img src={exclamationTriangle} alt="warning"></img>
-                  <p className="text-sm">Your 1 request per 10 second limit has been reached.</p>
+                  <p className="text-sm">Your request limit has been reached. try again after 5 seconds.</p>
               </div>}
-            <button type='submit' className="mb-4 w-full hover:bg-gray-800 rounded-md bg-gray-900 px-6 py-3 font-medium text-white">Prcoeed to payment</button>
+            <button type='submit' disabled={rateLimitError} className={`mb-4 w-full ${rateLimitError ? "bg-gray-600 hover:bg-gray-600" : "hover:bg-gray-800 bg-gray-900"} rounded-md px-6 py-3 font-medium text-white`}>Prcoeed to payment</button>
         </div>
       </form>
       <div className="mt-14">

@@ -5,9 +5,9 @@ const { Purchase } = require("./models/model");
 const {captureOrder, createOrder} = require("./payments/processPayment")
 
 const limiter = rateLimit({
-	windowMs: 10000,
+	windowMs: 5000,
 	limit: 1,
-  message: "Your request limit has been reached. try again.",
+  message: "Your request limit has been reached. try again after 5 seconds.",
 	standardHeaders: 'draft-7',
 	legacyHeaders: false,
 })
