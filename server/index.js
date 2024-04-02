@@ -26,7 +26,9 @@ const sess = session({
         mongoUrl: process.env.DATABASE_URL,
     }),
     cookie: {   
-        secure: false,
+        secure: true,
+        httpOnly: true,
+        sameSite: "lax"
     }
 })
 const origin = process.env.URL

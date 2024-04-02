@@ -98,7 +98,7 @@ export const MediaCarousel = memo(({product, curr, setCurr, id}) => {
                     arrows: false,
                     lazyLoad: true,
                   }
-                },
+                },  
             ]
           
         }
