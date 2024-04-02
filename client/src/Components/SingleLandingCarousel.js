@@ -11,7 +11,7 @@ export const SingleLandingCarousel = ({slide}) => {
       onLoad={() => {
         setIsLoading(false)
       }}
-      alt="მთავარი კარუსელის ფოტო"
+      alt="Carousel image"
     ></img>
     </a>  
   </div>  

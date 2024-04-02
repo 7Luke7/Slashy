@@ -24,7 +24,7 @@ const make_order = async (req, res, next) => {
         req.session.order_id = make_order_request.data
         const dayinms = 86400000;
         req.session.cookie.maxAge = dayinms;
-        req.session.cookie.sameSite = 'none';
+        // req.session.cookie.sameSite = 'none';
         res.status(200).json({data: make_order_request.data})
     } catch (error) {
         console.log("error:", error)

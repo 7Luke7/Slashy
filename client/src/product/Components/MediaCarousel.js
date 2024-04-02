@@ -107,12 +107,12 @@ export const MediaCarousel = memo(({product, curr, setCurr, id}) => {
     return <Fragment>
         <div className="w-full lg:w-[400px] xl:w-[450px] h-full">
         {curr && curr.imageURL && curr.imageURL.includes(".mp4") ? <div className="relative outline-none w-full h-full">
-            <video src={curr.imageURL} playsInline width={854} height={480} alt="მთავარი ვიდეო" autoPlay controls muted className="w-full xxs:h-[400px] lg:h-[450px] aspect-video object-contain object-center">
+            <video src={curr.imageURL} playsInline width={854} height={480} alt="Main video" autoPlay controls muted className="w-full xxs:h-[400px] lg:h-[450px] aspect-video object-contain object-center">
             </video>
         </div> 
         : Object.keys(curr).length > 0 ? <img 
             fetchpriority="high"
-            alt="მთავარი ფოტო"
+            alt="Main image"
             src={!isMainLoading ? `${curr.imageURL}?x-oss-process=image/resize,m_pad,w_${window.innerWidth < 768 ? 400 : 450},h_${window.innerWidth < 768 ? 400 : 450}` : `${curr.imageURL}?x-oss-process=image/resize,m_pad,w_100,h_100`}
             onLoad={() => {
                 if (isMainLoading) {
@@ -129,17 +129,17 @@ export const MediaCarousel = memo(({product, curr, setCurr, id}) => {
                     <Fragment>
                         {window.innerWidth > 768 && settings.slidesToShow < productImage.length ? <>
                             <button onClick={() => slider.current.slickPrev()} className="absolute xxs:p-3 z-50 bg-[rgb(255,255,255,.9)] top-[1%] bottom-0 left-0 lg:p-1 sm:p-3">
-                                <img src={LeftArrow} width={14} height={14} alt="წინა" loading="lazy"></img>
+                                <img src={LeftArrow} width={14} height={14} alt="prev" loading="lazy"></img>
                             </button>
                             <button className="absolute z-50 p-1 bg-[rgb(255,255,255,.9)] top-0 bottom-0 xxs:p-3 sm:p-3 lg:p-1 right-0" onClick={() => slider.current.slickNext()}>
-                                <img src={RightArrow} width={14} height={14} alt="შემდეგი" loading="lazy"></img>
+                                <img src={RightArrow} width={14} height={14} alt="next" loading="lazy"></img>
                             </button>
                         </> : window.innerWidth < 768 && settings.responsive[0].settings.slidesToShow < productImage.length && <>
                             <button onClick={() =>  slider.current.slickPrev()} className="absolute xxs:p-3 z-50 bg-[rgb(255,255,255,.9)] top-[1%] bottom-0 left-0 lg:p-1 sm:p-3">
-                                <img src={LeftArrow} width={14} height={14} alt="წინა" loading="lazy"></img>
+                                <img src={LeftArrow} width={14} height={14} alt="prev" loading="lazy"></img>
                             </button>
                             <button className="absolute z-50 p-1 bg-[rgb(255,255,255,.9)] top-0 bottom-0 xxs:p-3 sm:p-3 lg:p-1 right-0" onClick={() => slider.current.slickNext()}>
-                                <img src={RightArrow} width={14} height={14} alt="შემდეგი" loading="lazy"></img>
+                                <img src={RightArrow} width={14} height={14} alt="next" loading="lazy"></img>
                             </button>
                         </>}
                     <Slider {...settings} ref={slider}>
