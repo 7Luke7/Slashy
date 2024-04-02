@@ -7,8 +7,6 @@ const cors = require("cors")
 const {
     globalError,
 } = require("./errors/CustomError")
-const session = require("express-session")
-const MongoStore = require("connect-mongo")
 const compression = require("compression")
 const connect_database = require("./database")
 
@@ -18,19 +16,6 @@ app.use(compression({
 
 app.set('trust proxy', 1);
 
-const sess = session({
-    secret: process.env.SESSION_SECRET,  
-    resave: false,
-    saveUninitialized: false,
-    store: MongoStore.create({
-        mongoUrl: process.env.DATABASE_URL,
-    }),
-    cookie: {   
-        secure: true,
-        httpOnly: true,
-        sameSite: "none"
-    }
-})
 const origin = process.env.URL
 
 app.use(cors({
@@ -38,7 +23,6 @@ app.use(cors({
     credentials: true,
 }))
 
-app.use(sess)
 app.use(express.json())
 app.use("/api", router)
 app.use(globalError)

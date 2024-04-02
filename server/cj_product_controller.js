@@ -9,21 +9,12 @@ const make_order = async (req, res, next) => {
         const target_product = req.body
         const orderNumber = crypto.randomBytes(20).toString('hex');
 
-        if (req.session.order_id) {
-            const delete_order_request = await new CJClient().createRequest(`https://developers.cjdropshipping.com/api2.0/v1/shopping/order/deleteOrder?orderId=${req.session.order_id}`, "DELETE")
-
-            req.session.order_id = null 
-        }
-
         const make_order_request = await new CJClient().createRequest("https://developers.cjdropshipping.com/api2.0/v1/shopping/order/createOrder", "POST", {orderNumber: orderNumber, ...target_product})
 
         if (make_order_request.status === "failed") {
             throw new exntendedError("Failed creating order.", 500)
         }
 
-        req.session.order_id = make_order_request.data
-        const dayinms = 86400000;
-        req.session.cookie.maxAge = dayinms;
         res.status(200).json({data: make_order_request.data})
     } catch (error) {
         console.log("error:", error)
@@ -33,16 +24,11 @@ const make_order = async (req, res, next) => {
 
 const delete_order = async (req, res, next) => {
     try {
-        if (!req.session.order_id) {
-            throw new exntendedError("Payment Session Expired.", 400)
-        }
-        const delete_order_request = await new CJClient().createRequest(`https://developers.cjdropshipping.com/api2.0/v1/shopping/order/deleteOrder?orderId=${req.session.order_id}`, "DELETE")
+        const delete_order_request = await new CJClient().createRequest(`https://developers.cjdropshipping.com/api2.0/v1/shopping/order/deleteOrder?orderId=${req.params.id}`, "DELETE")
 
         if (delete_order_request.status === "failed") {
             throw new exntendedError("Failed creating order.", 500)
         }
-
-        req.session.order_id = null
 
         res.status(200).json(delete_order_request)
     } catch (error) {
@@ -52,9 +38,6 @@ const delete_order = async (req, res, next) => {
 
 const get_variant = async (req, res, next) => {
     try {  
-        if (!req.session.order_id) {
-            throw new exntendedError("Payment Session Expired.", 400)
-        }
         const make_order_request = await new CJClient().createRequest(`https://developers.cjdropshipping.com/api2.0/v1/product/variant/queryByVid?vid=${req.params.id}`, "GET")
 
         if (make_order_request.status === "failed") {
@@ -71,14 +54,11 @@ const get_variant = async (req, res, next) => {
 
 const query_order = async (req, res, next) => {
     try {   
-        if (!req.session.order_id) {
-            throw new exntendedError("Payment Session Expired.", 400)
-        }
-        const order_id = req.session.order_id
+        const order_id = req.params.id
 
         const query_order_request = await new CJClient().createRequest(`https://developers.cjdropshipping.com/api2.0/v1/shopping/order/getOrderDetail?orderId=${order_id}`, "GET")
 
-        if (query_order_request.status === "failed") {
+        if (query_order_request.status === "failed" || query_order_request.data.orderStatus === "TRASH") {
             throw new exntendedError("Failed while quering order", 500)
         }
 
@@ -102,10 +82,6 @@ const query_order = async (req, res, next) => {
 const payment_and_order = async (req, res, next) => {
     try {
         const request_payment = await Purchase.findById(req.params.id)
-
-        if (req.session.order_id) {
-            req.session.order_id = null
-        }
 
         if(!request_payment) {
             throw new exntendedError("Purchase cannot be found.", 400)

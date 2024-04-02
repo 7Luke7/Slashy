@@ -80,7 +80,6 @@ const Purchase = () => {
             headers: {
                 "Content-Type": "application/json"
             },
-            credentials: "omit",
             body: JSON.stringify({
                 id: purchase_targets.pid
             })
@@ -155,7 +154,6 @@ const Purchase = () => {
           headers: {
             "Content-Type": "application/json"
           },
-          credentials: "include",
           body: JSON.stringify(payload)
         })
 

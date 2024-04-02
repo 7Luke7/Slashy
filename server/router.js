@@ -14,7 +14,7 @@ const limiter = rateLimit({
 router.get("/payment/:id", payment_and_order)
 router.post("/make_cj_order", limiter, make_order)
 router.delete("/delete_order/:id", limiter, delete_order)
-router.get("/query_order", query_order)
+router.get("/query_order/:id", query_order)
 router.get("/get_variant/:id", get_variant)
 router.post("/orders", async (req, res) => {
     try {

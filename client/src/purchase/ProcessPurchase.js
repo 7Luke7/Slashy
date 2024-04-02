@@ -11,6 +11,7 @@ const ProcessPurchase = () => {
     const [variant, setVariant] = useState()
     const [orderRemoved, setOrderRemoved] = useState(false)
     const [paymentSessionExpired, setPaymentSessionExpired] = useState()
+    const [majorError, setMajorError] = useState()
 
     const {id} = useParams()
     const navigate = useNavigate()
@@ -22,16 +23,16 @@ const ProcessPurchase = () => {
         
         const query_order = async () => {
             try {
-                const query_order_request = await fetch(`${process.env.REACT_APP_SERVER_URL}/api/query_order`, {
+                const query_order_request = await fetch(`${process.env.REACT_APP_SERVER_URL}/api/query_order/${id}`, {
                     method: "GET",
                     cache: "no-store",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    credentials: "include",
                 })
 
                 const data = await query_order_request.json()
+
+                if (!query_order_request.ok) {
+                    throw new Error("Failed while quering order")
+                }
 
                 if (data.status === 400) {
                     throw new Error(data.status)
@@ -43,7 +44,7 @@ const ProcessPurchase = () => {
                 if (Number(error.message) === 400) {
                     return setPaymentSessionExpired(true)
                 }
-                alert(error.message)
+                setMajorError(true)
             }
         }
 
@@ -55,12 +56,11 @@ const ProcessPurchase = () => {
             return
         }
         
-        const query_order = async () => {
-            const vid = order && order.productList[0].vid
+        const get_variant = async () => {
+            const vid = order && order.productList && order.productList[0].vid
             try {
                 const query_order_request = await fetch(`${process.env.REACT_APP_SERVER_URL}/api/get_variant/${vid}`, {
                     method: "GET",
-                    credentials: "include",
                     cache: "no-store",
                 })
 
@@ -79,14 +79,14 @@ const ProcessPurchase = () => {
             }
         }
 
-        query_order()
+        get_variant()
     }, [order])
 
     const createOrder = async (data) => {
         try {
             const request = await fetch(`${process.env.REACT_APP_SERVER_URL}/api/orders`, {
                 method: "POST",
-                    headers: {
+                headers: {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
@@ -113,7 +113,6 @@ const ProcessPurchase = () => {
                     cj_order: {...variant, ...order},
                     orderID: data.orderID
                 }),
-                credentials: "include",
             })
             const response_data = await request.json()
 
@@ -133,7 +132,6 @@ const ProcessPurchase = () => {
                 headers: {
                     "Content-Type": "application/json"
                 },
-                credentials: "include",
             })
 
             if (!delete_order_request.ok) {
@@ -152,8 +150,20 @@ const ProcessPurchase = () => {
         }
     }
     const render = useMemo(() => {
+        if (majorError) {
+            return <>
+                <Header></Header>
+                <div className="min-h-[70vh] flex items-center justify-center">
+                    <div className="flex flex-col items-center space-y-2">
+                        <p>Failed while quering for Order, it might be removed.</p>
+                        <a href="/" className="rounded py-1 px-2 bg-[#fd5702]">Go to Home page</a>
+                    </div>
+                </div>
+                <Footer></Footer>
+            </>
+        }
         if (globalLoading) {
-            return  <div className="bg-gray-100 flex items-center min-h-screen justify-center">
+            return  <div className="bg-gray-100 w-full flex items-center min-h-screen justify-center">
                 <img className="animate-spin" src={loading}></img>
             </div>
         } else if (orderRemoved) {
@@ -256,7 +266,7 @@ const ProcessPurchase = () => {
             <Footer></Footer>
             </>
         }
-    }, [globalLoading, paymentSessionExpired, orderRemoved, variant, order])
+    }, [majorError, globalLoading, paymentSessionExpired, orderRemoved, variant, order])
     return render
 }
 
