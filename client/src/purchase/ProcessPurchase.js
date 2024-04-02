@@ -22,7 +22,7 @@ const ProcessPurchase = () => {
         
         const query_order = async () => {
             try {
-                const query_order_request = await fetch(`${process.env.REACT_APP_SERVER_URL}/api/query_order`, {
+                const query_order_request = await fetch("/api/query_order", {
                     method: "GET",
                     cache: "no-store",
                     headers: {
@@ -58,7 +58,7 @@ const ProcessPurchase = () => {
         const query_order = async () => {
             const vid = order && order.productList[0].vid
             try {
-                const query_order_request = await fetch(`${process.env.REACT_APP_SERVER_URL}/api/get_variant/${vid}`, {
+                const query_order_request = await fetch(`/api/get_variant/${vid}`, {
                     method: "GET",
                     credentials: "include",
                     cache: "no-store",
@@ -84,7 +84,7 @@ const ProcessPurchase = () => {
 
     const createOrder = async (data) => {
         try {
-            const request = await fetch(`${process.env.REACT_APP_SERVER_URL}/api/orders`, {
+            const request = await fetch("/api/orders", {
                 method: "POST",
                     headers: {
                     "Content-Type": "application/json",
@@ -104,7 +104,7 @@ const ProcessPurchase = () => {
 
     const onApprove = async (data) => {
         try {
-            const request = await fetch(`${process.env.REACT_APP_SERVER_URL}/api/payment/capture`, {
+            const request = await fetch("/api/payment/capture", {
                 method: "POST",
                 headers: {
                 "Content-Type": "application/json",
@@ -128,7 +128,7 @@ const ProcessPurchase = () => {
             return
         } 
         try {
-            const delete_order_request = await fetch(`${process.env.REACT_APP_SERVER_URL}/api/delete_order/${order.orderId}`, {
+            const delete_order_request = await fetch(`/api/delete_order/${order.orderId}`, {
                 method: "DELETE",
                 headers: {
                     "Content-Type": "application/json"
