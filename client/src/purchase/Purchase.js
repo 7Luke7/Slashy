@@ -150,7 +150,7 @@ const Purchase = () => {
       }
 
       try {
-        const make_order_request = await fetch("/api/make_cj_order", {
+        const make_order_request = await fetch(`${process.env.REACT_APP_SERVER_URL}/api/make_cj_order`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json"
