@@ -46,13 +46,13 @@ export const Footer = () => {
       </a>
     </li> 
     <li>
-      <a href="https://www.instagram.com/slashyshop8/" className="flex items-center gap-2" target="_blank">
+      <a href="https://www.instagram.com/slashyshopp/" className="flex items-center gap-2" target="_blank">
         <img src={Instagram} alt="tiktok" loading="lazy" width={16} height={16}></img>
         <p className="text-xs font-[600] text-gray-700">Instagram</p>
       </a>
     </li>
     <li>
-      <a href="https://www.tiktok.com/@slashyshop8" className="flex items-center gap-2" target="_blank">
+      <a href="https://www.tiktok.com/@slashyshopp" className="flex items-center gap-2" target="_blank">
         <img src={Tiktok} alt="tiktok" loading="lazy" width={16} height={16}></img>
         <p className="text-xs font-[600] text-gray-700">Tiktok</p>
       </a>
