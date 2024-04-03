@@ -75,7 +75,7 @@ export const Footer = () => {
     </div>
     <div className="xxs:w-[100%] sm:w-[60%] text-center p-5 m-auto">
     <hr />
-        <p className="text-xs font-bold text-gray-600 pt-5">Copyright © {new Date().getFullYear()} Slashy.store All rights reserved.</p>
+        <p className="text-xs font-bold text-gray-600 pt-5">Copyright © {new Date().getFullYear()} Slashy.shop All rights reserved.</p>
     </div>
     </div>  
 }

@@ -2,6 +2,8 @@ import { Fragment, useEffect, useMemo, useState } from "react"
 import {SearchProduct} from "./SearchProduct"
 import {Pagination} from "../../Components/Pagination"
 import categoryNames from "../../Components/searchNav.json"
+import mainLogo from "../../public/slashy_logo.webp"
+import {Helmet} from "react-helmet-async" 
 
 export const SearchProducts = ({category_id, page, isVideo, isAsc, fieldType, countryCode, keyword, minInput, maxInput}) => {
     const [isLoading, setIsLoading] = useState(true)
@@ -35,7 +37,6 @@ export const SearchProducts = ({category_id, page, isVideo, isAsc, fieldType, co
             })
 
             const data = await request.json();
-            const product_list = data.data.content[0].productList
             
             setProducts(data.data);
             setIsLoading(false)
@@ -88,10 +89,6 @@ export const SearchProducts = ({category_id, page, isVideo, isAsc, fieldType, co
       return keyword_array.join(', ');
       }, [category_id])
 
-      useEffect(() => {
-        document.title = keyword ? `${keyword} - Search` : `${keywords} - Slashy`
-      }, [keywords])
-
       const productListLength = products && products.content[0].productList.length
     const render = useMemo(() => {
         if (isLoading) {
@@ -120,6 +117,31 @@ export const SearchProducts = ({category_id, page, isVideo, isAsc, fieldType, co
             </Fragment>
       } else if (productListLength > 0) {
         return <Fragment> 
+          <Helmet>
+        <meta
+          name="description"
+          content={keyword ? `Search ${keyword} - Best prices - Slashy.shop` : `${keywords} - Best prices - Slashy.ge`}
+        />
+        <meta
+          name="keywords"
+          content={keywords}
+        />
+        <link rel="canonical" href={window && window.location.href} />
+
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content={keyword ? `Search ${keyword} - Slashy.shop` : `${keywords} - Slashy.shop`} />
+        <meta
+          property="og:description"
+          content={keyword ? `Search ${keyword} - Best prices - Slashy.shop` : `${keywords} - Best prices - Slashy.shop`}
+        />
+        <meta
+          property="og:image"
+          content={mainLogo}></meta>
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="900" />
+        <meta property="og:url" content={window && window.location.href} />
+        <title>{keyword ? `${keyword} for sale` : keywords} - Slashy</title>
+    </Helmet>  
           <div className="flex gap-y-2 gap-x-1 flex-wrap xxs:justify-center lg:justify-between">
            {products.content[0].productList.map((p, i) => {
             if (p.sellPrice) {

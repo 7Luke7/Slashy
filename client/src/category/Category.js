@@ -14,6 +14,9 @@ const Category = () => {
 
     useEffect(() => {
         document.title = "Slashy - categories"
+    }, [])
+
+    useEffect(() => {
         const filteredCategories = searchNav.map((cat) => {
             const filteredChildren = cat.children.map((c) => {
               const filteredSubcategories = c.children.filter((subc) => {
@@ -25,16 +28,13 @@ const Category = () => {
                 );
               });
           
-              // Include the current child only if it has filtered subcategories
               return filteredSubcategories.length > 0 ? { ...c, children: filteredSubcategories } : null;
             });
           
-            // Include the current category only if it has filtered children
             const categoryWithFilteredChildren = filteredChildren.filter(Boolean);
             return categoryWithFilteredChildren.length > 0 ? { ...cat, children: categoryWithFilteredChildren } : null;
           });
           
-          // Update the state with the filtered categories or original categories based on inputText
           setFilteredCategoriesState(inputText === "" ? searchNav : filteredCategories.filter(Boolean));
     }, [inputText])
 

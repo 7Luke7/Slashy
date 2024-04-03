@@ -3,6 +3,8 @@ import { Header } from "../Components/Header"
 import { Footer } from "../Components/Footer"
 import { MoreProducts } from "./Components/MoreProducts"
 import { useParams } from "react-router-dom"
+import { Helmet } from "react-helmet-async"
+import mainLogo from "../public/slashy_logo.webp"
 
 const Page = () => {
     const [isLoading, setIsLoading] = useState(true)
@@ -13,7 +15,6 @@ const Page = () => {
     const title = id === 1 ? "New Products" : id === 2 ? "Trending Products" : "Video Products"
 
     useEffect(() => {
-      document.title = `Search ${title} - Slashy`
       const get_activities = async () => {
         try {
             const head_url = {url: "", body: null}
@@ -56,6 +57,31 @@ const Page = () => {
     }, [id])
 
   return <Fragment>
+    <Helmet>
+        <meta
+          name="description"
+          content={`Offering 50 ${title}ს - Slashy.shop`}
+        />
+        <meta
+          name="keywords"
+          content={`Slashy, Slashy.shop, ${title}, Tiktok products`}
+        />
+        <link rel="canonical" href={window.location.href} />
+        <title>Find {title} - Slashy</title>
+
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content={`Find - ${title} - Slashy.shop`}/>
+        <meta
+          property="og:description"
+          content={`Offering 50 ${title}ს - Slashy.shop`}
+        />
+        <meta
+          property="og:image"
+          content={mainLogo} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="900" />
+        <meta property="og:url" content={window.location.href} />
+    </Helmet>
     <div id="closeScroll" className="bg-[rgb(251,77,1)]">
         <Header></Header>
         {

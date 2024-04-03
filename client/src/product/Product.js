@@ -9,6 +9,7 @@ import {ProductVariants} from "./Components/ProductVariants"
 import {ProductLoading} from "./Components/ProductLoading" 
 import { MediaCarousel } from "./Components/MediaCarousel"
 import {AdditionalInformation} from "./Components/AdditionalInformation"
+import {Helmet} from "react-helmet-async"
 
 const RecommendedProducts = lazy(() => import('./Components/RecommendedProducts'));
 
@@ -46,14 +47,11 @@ const Product = () => {
                 const sellPriceRange = data.SELLPRICE.split(' -- ');
                 const newSellPriceMin = Number(sellPriceRange[0]) * 1.31;
                 const newSellPriceMax = Number(sellPriceRange[1]) * 1.31;
-                console.log(newSellPriceMin, newSellPriceMax)
                 data.SELLPRICE = `${newSellPriceMin.toFixed(2)}--${newSellPriceMax.toFixed(2)}`;
             } else {
                 data.SELLPRICE = (Number(data.SELLPRICE) * 1.31).toFixed(2);
             }
 
-            console.log(data.SELLPRICE)
-            document.title = `${data["NAMEEN"]} - Slashy`
             setProduct(data)
             } catch (error) {
                 console.log(error);
@@ -157,7 +155,6 @@ const Product = () => {
     }
 
 
-    // PACKAGE_SIZE <------------------------------------------ Make this dynamic 
     const standard = Object.keys(variantObj).length === 0 ? product && product.stanProducts && product.stanProducts[0].STANDARD : variantObj.STANDARD
     const package_sizes = standard && standard.match(/\d+/g);
 
@@ -205,6 +202,43 @@ const Product = () => {
             observerTest.observe(show_additional);
 
           return <Fragment>
+            <Helmet>
+        <meta
+          name="description"
+          content={`${product.NAMEEN} - Slashy.shop`}
+        />
+        <meta
+          name="keywords"
+          content={`Slashy, Slashy.shop, ${product.NAMEEN}`}
+        />
+        <link rel="canonical" href={window.location.href} />
+        <title>{product.NAMEEN} - Slashy.shop</title>
+
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content={`Purchase - ${product.NAMEEN} - Slashy.shop`}/>
+        <meta
+          property="og:description"
+          content={`${product.NAMEEN} - Slashy.shop`}
+        />
+        <meta
+          property="og:image"
+          content={product.newImgList[0]}
+        />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="900" />
+        <meta property="og:url" content={window.location.href} />
+        <link
+          rel="stylesheet"
+          type="text/css"
+          charset="UTF-8"
+          href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css"
+        />
+        <link
+          rel="stylesheet"
+          type="text/css"
+          href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css"
+        />
+        </Helmet>
     <main className="h-full w-[100%] mx-auto"> 
             <div className="xxs:w-[95%] mobl:w-[90%] lg:w-[90%] sm:w-[80%] mx-auto">
             <ChildCategories product={product}></ChildCategories>

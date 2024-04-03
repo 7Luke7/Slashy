@@ -64,7 +64,7 @@ const Purchase = () => {
     }, [closeModal])
     
     useEffect(() => {
-      document.title = "Slashy - Purchase"
+      document.title = "Slashy - Order"
       const purchase_targets = JSON.parse(sessionStorage.getItem("purchases"))
 
       if (!purchase_targets) {

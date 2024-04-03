@@ -4,6 +4,8 @@ import arrowLeft from "../public/arrow-left.svg"
 import arrowRight from "../public/arrow-right.svg"
 import { useParams } from "react-router-dom"
 import {BoardProducts} from "./Components/BoardProducts"
+import { Helmet } from "react-helmet-async"
+import mainLogo from "../public/slashy_logo.webp"
 
 const Page = () => {
     const [board, setBoard] = useState({})
@@ -34,8 +36,6 @@ const Page = () => {
                 
                 const data = await request.json()
                 const colors = JSON.parse(data.result.v3)
-
-                document.title = `${data.result.category} - Slashy`
 
                 setBoard({...data.result, ...colors, title: data.result.category})
                 get_activities_by_id({name: data.result.threeNames[0].name, id: params.id})
@@ -93,6 +93,32 @@ const Page = () => {
       }
 
     return <>
+        <Helmet>
+        <meta
+          name="description"
+          content="Free delivery on many items. Get the best shopping experience. Benefit from the best prices and great deals on daily essential items and other products with the largest selection, including fashion, home, beauty, electronics, sports, toys, pets, kids, books, video games, office supplies, and more. - Slashy.shop"
+        />
+        <meta
+          name="keywords"
+          content="Slashy, Slashy.shop, from China, from America, from Germany, from England, online shopping, online store, low price, best price, books, bookstore, magazine, subscription, music, CD, DVD, video, electronics, video games, computers, mobile phones, toys, games, clothing, accessories, footwear, cosmetics, watches, office products, sports & outdoor, sports goods, children's products, health, personal care, beauty, home, garden, kitchen & dining, pets, hardware, appliances, tools, outdoor equipment, automotive parts, pet supplies, interior decoration"
+        />
+        <link rel="canonical" href={window.location.href} />
+
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Products from Abroad - Slashy.shop" />
+        <meta
+          property="og:description"
+          content="We offer to buy products prepared abroad at low prices - Slashy.shop"
+        />
+        <meta
+          property="og:image"
+          content={mainLogo}
+        /> 
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="900" />
+        <meta property="og:url" content={window.location.href} />
+        {Object.keys(board).length > 0 && <title>{board.category} - Slashy</title>}
+        </Helmet>
         <div id="head">
         <div className="relative">
         <Header></Header>

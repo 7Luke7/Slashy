@@ -2,7 +2,9 @@ import { Header } from "../Header"
 import { Navigation } from "../Navigation"
 import {TrendingProducts} from "../TrendingProducts"
 import {Footer} from "../Footer"
-import { Fragment, Suspense, lazy, useEffect } from "react"
+import { Suspense, lazy } from "react"
+import { Helmet } from "react-helmet-async"
+import mainLogo from "../../public/slashy_logo.webp"
 
 const VideoProducts = lazy(() => import("../VideoProducts"))
 const HotCategories = lazy(() => import("../HotCategories"))
@@ -10,25 +12,43 @@ const NewProducts = lazy(() => import("../NewProducts"))
 const BestDeals = lazy(() => import("../BestDeals"))
 
 export const Landing = () => {
-  useEffect(() => {
-    document.title = "Slashy.store. Online store. Less Prices."
-    const slick_src = [
-      "https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css",
-      "https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css"
-    ]
-
-    for (let i = 0; i < slick_src.length; i++) {
-      const link = document.createElement("link")
-
-      link.rel = "stylesheet";
-      link.type = "text/css";
-      link.href = slick_src[i]
-
-      document.head.appendChild(link)
-    }
-  }, [])
-
-  return <Fragment>
+  return <>
+    <Helmet>
+    <meta
+          name="description"
+          content="Free delivery on many items. Get the best shopping experience. Benefit from the best prices and great deals on daily essential items and other products with the largest selection, including fashion, home, beauty, electronics, sports, toys, pets, kids, books, video games, office supplies, and more."
+        />
+        <meta
+          name="keywords"
+          content="Slashy, from China, from America, from Germany, from England, online shopping, online store, low price, best price, books, bookstore, magazine, subscription, music, CD, DVD, video, electronics, video games, computers, mobile phones, toys, games, clothing, accessories, footwear, cosmetics, watches, office products, sports & outdoor, sports goods, children's products, health, personal care, beauty, home, garden, kitchen & dining, pets, hardware, appliances, tools, outdoor equipment, automotive parts, pet supplies, interior decoration"
+        />
+        <link rel="canonical" href="https://slashy.shop" />
+        <title>Slashy.shop. Online Store. Best Prices.</title>
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Products from Abroad - Slashy" />
+        <meta
+          property="og:description"
+          content="We offer to buy products prepared abroad at low prices - Slashy"
+        />
+        <meta
+          property="og:image"
+          content={mainLogo}
+        />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="900" />
+        <meta property="og:url" content="https://slashy.shop" />
+        <link
+          rel="stylesheet"
+          type="text/css"
+          charset="UTF-8"
+          href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css"
+        />
+        <link
+          rel="stylesheet"
+          type="text/css"
+          href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css"
+        />
+    </Helmet>
       <Header></Header>
       <section id="closeScroll" className="sm:w-[83%] lg:w-[77%] xxs:w-full m-auto">
         <Navigation></Navigation>
@@ -51,5 +71,5 @@ export const Landing = () => {
       <section className="mt-20">
         <Footer />
       </section>
-  </Fragment>
+  </>
 }
