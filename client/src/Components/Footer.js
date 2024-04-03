@@ -40,7 +40,7 @@ export const Footer = () => {
     <h2 className="text-sm font-[600] text-gray-900">Follow us</h2>
     <hr className="border-1 border-[rgb(251,77,1)]" />
     <li>
-      <a href="https://www.instagram.com/slashyshop8/" className="flex items-center gap-2" target="_blank">
+      <a href="https://www.facebook.com/people/Slashy-shop/61557911885393/" className="flex items-center gap-2" target="_blank">
         <img src={Facebook} alt="facebook" loading="lazy" width={16} height={16}></img>
         <p className="text-xs font-[600] text-gray-700">Facebook</p>
       </a>
@@ -58,7 +58,7 @@ export const Footer = () => {
       </a>
     </li>
     <li>
-      <a href="https://www.youtube.com/channel/UCyC2uJXOkRFrFKchxmLh-5w" className="flex items-center gap-2" target="_blank">
+      <a href="https://www.youtube.com/channel/UCfu0hHMM_PG-SoYYlhPSlnQ" className="flex items-center gap-2" target="_blank">
         <img src={Youtube} alt="youtube" loading="lazy" width={16} height={16}></img>
         <p className="text-xs font-[600] text-gray-700">Youtube</p>
       </a>
@@ -69,7 +69,8 @@ export const Footer = () => {
     <hr className="border-1 border-[rgb(251,77,1)]" />
     <li className="text-xs font-[600] text-gray-700 flex items-center gap-2">
     <img src={envelopeFill} alt="mail" loading="lazy" width={16} height={16}></img>
-    info@slashy.store</li>
+      info@slashy.store
+    </li>
 </main>
     </div>
     <div className="xxs:w-[100%] sm:w-[60%] text-center p-5 m-auto">
