@@ -28,7 +28,7 @@ export const CountyPopUp = ({setCloseModal, selectedCountry, setSelectedCountry}
             </div>
           </div>
           <form className="bg-gray-50 py-3 sm:flex sm:px-6">
-            <select onChange={(e) => setSelectedCountry(e.target.value)} className="outline-none py-2 w-full px-2 border rounded"> 
+            <select value={selectedCountry} onChange={(e) => setSelectedCountry(e.target.value)} className="outline-none py-2 w-full px-2 border rounded"> 
                 {countries.map((c, i) => {
                     return <option key={i} value={c.code}>{c.name}</option>
                 })}

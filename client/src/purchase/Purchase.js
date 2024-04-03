@@ -14,6 +14,7 @@ import { OrderSummary } from "./OrderSummary"
 import {Header} from "../Components/Header"
 import {Footer} from "../Components/Footer"
 import exclamationTriangle from "../public/exclamation-triangle.svg"
+import swap from "../public/arrow-repeat.svg"
 
 const Purchase = () => {
     const [variant, setVariant] = useState({})
@@ -56,12 +57,10 @@ const Purchase = () => {
 
       if (!has_country_selected) {
         return setCloseModal(false)
-      } else {
-        setCloseModal(true)
-        const country = countries.find(c => c.code === has_country_selected)
-        setCountry(country.name)
-        setSelectedCountry(country.code)
       }
+      const country = countries.find(c => c.code === has_country_selected)
+      setCountry(country.name)
+      setSelectedCountry(country.code)
     }, [closeModal])
     
     useEffect(() => {
@@ -110,6 +109,8 @@ const Purchase = () => {
 
       get_all_variants()
     }, [])
+
+    console.log(country)
 
     const make_order = async (e) => {
       e.preventDefault()
@@ -317,6 +318,9 @@ const Purchase = () => {
 
     const full_price = selectedLogistic.price && Object.keys(variant).length && (Number(selectedLogistic.price) + Number(variant.SELLPRICE)).toFixed(2)
 
+    const selectCountryFunction = () => {
+      setCloseModal(false)
+    }
     return <Fragment>
       {
         sessionExpiredError ? <Fragment>
@@ -360,15 +364,21 @@ const Purchase = () => {
             </div>
             <div className='flex flex-col w-full xxs:gap-1 sm:gap-0 items-center'>
                     <div className="flex xxs:flex-col sm:flex-row w-full items-center">
-                    <input
-                        id="country"
-                        name="country"
-                        onChange={(e) => setCountry(e.target.value)}
-                        value={country}
-                        type="text"
-                        placeholder="Country"
-                        required
-                        className="w-full rounded-md border border-gray-200 px-3 py-3 text-sm shadow-sm outline-none focus:z-10 focus:border-[rgb(243,104,29)] focus:ring-[rgb(243,104,29)]" />
+                    <div className="relative w-full">
+                        <input
+                            id="country"
+                            name="country"
+                            onChange={(e) => setCountry(e.target.value)}
+                            value={country}
+                            type="text"
+                            placeholder="Country"
+                            readOnly
+                            required
+                            className="rounded-md w-full border border-gray-200 px-3 py-3 text-sm shadow-sm outline-none focus:z-10 focus:border-[rgb(243,104,29)] focus:ring-[rgb(243,104,29)]" />
+                        <button onClick={selectCountryFunction} type="button" className="absolute right-3 top-1/2 transform -translate-y-1/2">
+                            <img src={swap} alt="change address" />
+                        </button>
+                    </div>
                         <input
                     id="province"
                     name="province"
