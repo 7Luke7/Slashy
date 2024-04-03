@@ -40,11 +40,11 @@ const Cart = () => {
         <div id="closeScroll" className="min-h-[90vh]">
         {isEmpty ? <div className="flex mt-8 flex-col items-center gap-2 justify-center">
         <div className="flex gap-2 items-center">
-            <h1>Cart is Empty.</h1>
+            <h1>Cart is empty.</h1>
             <img width={24} alt="sad emoji" height={24} src={sadIcon} loading="lazy"></img>
         </div>
 
-        <a href="/" className="bg-[rgb(237,123,82)] text-sm font-sm rounded p-2 text-white">Continue Shopping</a>
+        <a href="/" className="bg-[rgb(237,123,82)] text-sm font-sm rounded p-2 text-white">Continue shopping</a>
 
         </div> :
         <div className={`${cartArray && cartArray.length > 0 ? "grid-cols-4 xs:grid-cols-1 xxs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 lg:grid-cols-3" : "grid-cols-1"}  gap-5 relative grid mb-3 mt-10 `}>        

@@ -59,14 +59,28 @@ export const CartItem = ({v, i, cartItemDelete}) => {
 
         <div className="flex flex-col gap-2">
           <div className="flex items-end justify-between">
-              <span itemProp="price" className="text-[rgb(251,77,1)] font-bold text-base">Price: ${v.SELLPRICE * quantity}</span>
+              <span itemProp="price" className="text-[rgb(251,77,1)] font-bold text-base">Price: ${Number(v.SELLPRICE * quantity).toFixed(2)}</span>
               <div className="flex mt-2 items-center">
-                  <button onClick={() => setQuantity(q => q - 1)} disabled={quantity === 1} className="border px-5 flex items-center justify-center border-gray-200 w-8 cursor-pointer outline-none">
+                  <button onClick={() => {
+                    const cartItems = JSON.parse(localStorage.getItem("cart"))
+                    const currentProductIndex = cartItems.findIndex((c) => v.ID === c.ID)
+                    cartItems[currentProductIndex].quantity--
+                    console.log(cartItems)
+                    localStorage.setItem("cart", JSON.stringify(cartItems))
+                    setQuantity(q => q - 1)
+                  }} disabled={quantity === 1} className="border px-5 flex items-center justify-center border-gray-200 w-8 cursor-pointer outline-none">
                       <span className="font-thin">−</span>
                   </button>
-                      <input onChange={(e) => setQuantity(e.target.value)} type="number" readOnly className="outline-none w-8 border text-center focus:outline-none text-gray-700 outline-none"
+                      <input type="number" readOnly min={1} className="outline-none w-8 border text-center focus:outline-none text-gray-700 outline-none"
                       name="custom-input-number" value={quantity}></input>
-                  <button onClick={() => setQuantity(q => q + 1)} className="border px-5 flex items-center justify-center border-gray-200 w-8 cursor-pointer outline-none">
+                  <button onClick={() => {
+                    const cartItems = JSON.parse(localStorage.getItem("cart"))
+                    const currentProductIndex = cartItems.findIndex((c) => v.ID === c.ID)
+                    cartItems[currentProductIndex].quantity++
+                    console.log(cartItems)
+                    localStorage.setItem("cart", JSON.stringify(cartItems))
+                    setQuantity(q => q + 1)
+                  }} className="border px-5 flex items-center justify-center border-gray-200 w-8 cursor-pointer outline-none">
                       <span className="font-thin">+</span>
                   </button>
               </div>

@@ -6,6 +6,10 @@ const { Purchase } = require("./models/model");
 
 const make_order = async (req, res, next) => {
     try {
+        const check_for_quantity = req.body.products.some(v => v.quantity <= 0)
+        if (check_for_quantity) {
+            throw new exntendedError("Quantity is less then 1. Increase the quantity and try again", 400)
+        }
         const target_product = req.body
         const orderNumber = crypto.randomBytes(20).toString('hex');
 

@@ -148,11 +148,11 @@ const Purchase = () => {
       ]
       }
 
-      try {
+        try {
         const make_order_request = await fetch(`${process.env.REACT_APP_SERVER_URL}/api/make_cj_order`, {
           method: "POST",
           headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json"  
           },
           body: JSON.stringify(payload)
         })

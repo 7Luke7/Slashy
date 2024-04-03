@@ -240,7 +240,7 @@ const Product = () => {
                                             return
                                         }
                                         setQuantity(e.target.value)
-                                    }} type="number" readOnly className="outline-none lg:w-[50px] px-5 text-md xxs:w-full xl:w-full text-center border flex items-center text-gray-700" value={quantity}></input>
+                                    }} type="number" readOnly min={1} className="outline-none lg:w-[50px] px-5 text-md xxs:w-full xl:w-full text-center border flex items-center text-gray-700" value={quantity}></input>
                                 <button onClick={() => {
                                     if (Object.keys(variantObj).length === 0) {
                                         return
