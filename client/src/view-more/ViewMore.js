@@ -60,7 +60,7 @@ const Page = () => {
     <Helmet>
         <meta
           name="description"
-          content={`Offering 50 ${title}ს - Slashy.shop`}
+          content={`Offering 50 ${title} - Slashy.shop`}
         />
         <meta
           name="keywords"

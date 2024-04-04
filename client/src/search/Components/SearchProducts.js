@@ -120,7 +120,7 @@ export const SearchProducts = ({category_id, page, isVideo, isAsc, fieldType, co
           <Helmet>
         <meta
           name="description"
-          content={keyword ? `Search ${keyword} - Best prices - Slashy.shop` : `${keywords} - Best prices - Slashy.ge`}
+          content={keyword ? `Search ${keyword} - Best prices - Slashy.shop` : `${keywords} - Best prices - Slashy.shop`}
         />
         <meta
           name="keywords"

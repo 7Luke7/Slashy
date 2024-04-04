@@ -7,7 +7,6 @@ const Category = () => {
     const [inputText, setInputText] = useState("");
     const [filteredCategoriesState, setFilteredCategoriesState] = useState([])
     const inputHandler = (e) => {
-        //convert input text to lower case
         const lowerCase = e.target.value.toLowerCase();
         setInputText(lowerCase);
     };

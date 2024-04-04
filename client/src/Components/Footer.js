@@ -69,13 +69,13 @@ export const Footer = () => {
     <hr className="border-1 border-[rgb(251,77,1)]" />
     <li className="text-xs font-[600] text-gray-700 flex items-center gap-2">
     <img src={envelopeFill} alt="mail" loading="lazy" width={16} height={16}></img>
-      info@slashy.store
+      info@slashy.shop
     </li>
 </main>
     </div>
     <div className="xxs:w-[100%] sm:w-[60%] text-center p-5 m-auto">
     <hr />
-        <p className="text-xs font-bold text-gray-600 pt-5">Copyright © {new Date().getFullYear()} Slashy.shop All rights reserved.</p>
+        <p className="text-xs font-bold text-gray-600 pt-5">Copyright © {new Date().getFullYear()} slashy.shop All rights reserved.</p>
     </div>
     </div>  
 }
