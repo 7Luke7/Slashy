@@ -27,7 +27,7 @@ export const ReviewData = memo(({reviewData}) => {
                         <p className="text-xs xxs:hidden xs:block pl-3 font-semibold text-gray-600">{review.score} out of 5</p>
                     </div>
                 </div>
-                <p className="font-normal text-md mt-5 text-gray-800">{review.body}</p>
+                <h3 className="font-normal text-md mt-5 text-gray-800">{review.body}</h3>
             </div>
         })}
     </Fragment>

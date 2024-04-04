@@ -25,12 +25,12 @@ export const CartItem = ({v, i, cartItemDelete}) => {
     </a>
       <article className="flex flex-col justify-start h-full" itemScope itemType="https://schema.org/Product">
       <a href={`/product/${v.PID}`}>
-              <h1
+              <h2
               className="xxs:text-[11px] min-h-[58px] xs:text-[14px] md:text-[12px] md:w-full text-gray-800 font-bold"
               itemProp="name"
               >
                   {v.NAMEEN && v.NAMEEN.slice(0, 100) + "..." || "Has No title."}
-              </h1>
+              </h2>
         </a>
 
         <div className="flex flex-col gap-3 justify-center">

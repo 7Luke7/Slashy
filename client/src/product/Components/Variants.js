@@ -8,7 +8,7 @@ export const Variants = ({v, i, pv, index, changeVarientArr, setVarientList}) =>
               src={`${v.img}?x-oss-process=image/resize,m_fill,w_80,h_80`}>
             </img>
             </button> : <button disabled={v.disable} onClick={() => changeVarientArr(v, i, pv, setVarientList, index)} className={`border-2 ${v.chosen && "border-[rgb(255,87,0)]"} duration-200 ${v.disable && "opacity-[0.3]"} outline-none px-2 py-1 rounded`}>
-        <p className="font-semibold text-gray-800 text-[13px]">{v.eng_name}</p>
+        <h3 className="font-semibold text-gray-800 text-[13px]">{v.eng_name}</h3>
     </button>}
     </>
 } 

@@ -39,9 +39,9 @@ export const TrendingProducts = memo(() => {
     <div className="bg-[rgb(230,230,230,.2)] p-4 rounded-2xl">
     <div className="md:mx-5 lg:mx-2 xl:mx-5 flex justify-between items-center">
     <div className="flex gap-2 items-center">
-      <h1 className="xxs:text-md md:text-lg text-gray-900 font-bold">
+      <h2 className="xxs:text-md md:text-lg text-gray-900 font-bold">
         Trending Products
-      </h1>
+      </h2>
       <img loading="lazy" className="xxs:hidden xs:block" src={Fire} alt="trend"></img>
     </div>
   <a href="/view-more/2" className="text-blue-500 underline text-xs">View more</a>

@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom"
 import {BoardProducts} from "./Components/BoardProducts"
 import { Helmet } from "react-helmet-async"
 import mainLogo from "../public/slashy_logo.webp"
+import { Footer } from "../Components/Footer"
 
 const Page = () => {
     const [board, setBoard] = useState({})
@@ -131,7 +132,7 @@ const Page = () => {
                     {board.threeNames && board.threeNames.map((name, i) => {
                         return <button key={i} style={{color: board.allThreeFontColor}} onClick={() => get_activities_by_id({id: name.id, index: i})} className="relative outline-none h-full flex items-center">
                             <a href="#start">
-                                <p className="text-base">{name.name}</p>
+                                <h2 className="text-base">{name.name}</h2>
                                 <span className={`absolute bottom-0 translate-y-[1px] left-0 right-0 h-2 bg-white ${(!chosen || chosen === 0) && i === 0 ? '' : (chosen === i ? '' : 'hidden')}`}></span>
                             </a>
                         </button>
@@ -147,9 +148,6 @@ const Page = () => {
                 </div>
                 
                              <div className="bg-white pb-20 mt-20 w-full">
-                                    <div className="lg:absolute xxs:-translate-y-[1px] xxs:sticky left-1/2 lg:min-w-[40%] xxs:border-2 xxs:border-t-0 xxs:border-r-0 xxs:border-l-0 lg:border-0 w-full lg:w-[60%] flex items-center justify-center lg:rounded-lg top-0 xxs:rounded-none lg:-translate-x-1/2 right-1/2 z-10 p-2" style={{backgroundColor: board.oneThreeBackColor}}>
-                                    <h1 style={{color: board.oneThreeFontColor}} className="font-bold md:text-2xl xxs:text-md">{board.threeNames[chosen || 0].name}</h1>
-                                </div>
                                 <div className="flex flex-wrap w-[95%] gap-1 m-auto xxs:pt-2 sm:pt-14 sm:justify-evenly xxs:justify-center">
                                     {isLoading ? Array.from({length: 12}).map((_, index) => {
                                         return <div key={index} className="animate-pulse xxs:w-[200px] lg:w-[200px] mt-4 xs:w-[180px] mobl:w-[200px] xl:w-[180px]">
@@ -168,6 +166,9 @@ const Page = () => {
                                 </div>
                           </div>      
                 </div>
+                <div className="mt-24">
+        <Footer></Footer>
+        </div>
             </div>
             </Fragment>
         }

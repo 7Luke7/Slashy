@@ -73,7 +73,7 @@ const Page = () => {
         <meta property="og:title" content={`Find - ${title} - Slashy.shop`}/>
         <meta
           property="og:description"
-          content={`Offering 50 ${title}ს - Slashy.shop`}
+          content={`Offering 50 ${title} - Slashy.shop`}
         />
         <meta
           property="og:image"

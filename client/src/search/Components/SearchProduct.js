@@ -18,12 +18,12 @@ export const SearchProduct = ({p}) => {
           <Fragment>
           <div className="h-7">
           <span itemProp="price" className="text-[rgb(251,77,1)] font-bold xxs:text-[20px] text-sm">{p.sellPrice}$</span></div>
-          <h1
+          <h2
             className="xxs:text-sm text-gray-800 font-bold mobl:text-xs"
             itemProp="name"
           >
             {p.nameEn.substring(0, 100)}...
-          </h1>
+          </h2>
           </Fragment>
           
         </article>

@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
-import { PayPalButtons } from "@paypal/react-paypal-js";
+import { PayPalButtons, PayPalScriptProvider } from "@paypal/react-paypal-js";
 import { Footer } from "../Components/Footer";
 import { Header } from "../Components/Header";
 import loading from "../public/loading-loader.svg"
@@ -178,7 +178,14 @@ const ProcessPurchase = () => {
                 <Footer></Footer>
             </>
         } else if(variant || order && !orderRemoved) {
-            return <div className="bg-gray-100 mobl:px-4 xs:px-2 flex items-center min-h-screen justify-center py-8">
+            const initialOptions = {
+                clientId: process.env.REACT_APP_PAYPAL_CLIENT_ID,
+                currency: "USD",
+                intent: "capture",
+            };
+            return <>
+                <PayPalScriptProvider options={initialOptions}>
+                <div className="bg-gray-100 mobl:px-4 xs:px-2 flex items-center min-h-screen justify-center py-8">
                  <div className="flex items-center flex-col gap-4">
             <div className="max-w-[800px]">
             <div className="flex items-center mb-4 xxs:justify-around xs:justify-between">
@@ -256,6 +263,8 @@ const ProcessPurchase = () => {
             </div>
         </div>
         </div>
+                </PayPalScriptProvider>
+            </> 
         } else if(paymentSessionExpired) {
             return <>
             <Header></Header>

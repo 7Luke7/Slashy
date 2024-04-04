@@ -14,12 +14,12 @@ export const Product = ({product}) => {
         ></img>
         <article className="h-[80px]" itemScope itemType="https://schema.org/Product">
         <span itemProp="price" className="text-[rgb(251,77,1)] font-bold">{product.sellPrice || product.sellprice}$</span>
-        <h1
+        <h3
             className="text-[12px] text-gray-600 font-bold"
             itemProp="name"
         >
             {product.nameEn.substring(0, 70)}...
-        </h1>
+        </h3>
         
         </article>
         </a>  

@@ -57,7 +57,7 @@ export const AdditionalInformation = memo(({id, product}) => {
             setReviewsChoosen(true)
         }} className={` ${reviewsChoosen && "bg-[rgb(255,128,64)]"} border border-[rgb(255,128,64)] text-xs gap-3 outline-none text-black font-bold p-2 w-24 text-center`}>Reviews</button>      
     </div>
-    {reviewsChoosen && error ?  <h1 className="text-gray-900 mt-5 text-center">{error}</h1> : reviewsChoosen && !error ? <div className="flex flex-col xxs:mt-10 sm:m-20">
+    {reviewsChoosen && error ?  <p className="text-gray-900 text-base mt-5 text-center">{error}</p> : reviewsChoosen && !error ? <div className="flex flex-col xxs:mt-10 sm:m-20">
         {reviewData && reviewData.totalRecords !== "0" && <p className="text-md font-bold mb-5">Reviews: {reviewData.totalRecords}</p>}
         {!reviewData ? <ReviewLoading></ReviewLoading> : reviewData && reviewData.content.length != 0 ? <Fragment>
             <ReviewData reviewData={reviewData}></ReviewData>

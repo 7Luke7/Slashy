@@ -12,21 +12,13 @@ import Search from "./search/Search";
 import Product from "./product/Product";
 import Purchase from "./purchase/Purchase"
 import Category from "./category/Category"
-import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 import ProcessPurchase from "./purchase/ProcessPurchase";
 import { TrackingInfo } from "./tracking/TrackingInfo";
 import { Payment } from "./purchase/Payment";
 import { HelmetProvider } from 'react-helmet-async';
 
-const initialOptions = {
-  clientId: process.env.REACT_APP_PAYPAL_CLIENT_ID,
-  currency: "USD",
-  intent: "capture",
-};
-
 const App = () => {
   return  <HelmetProvider>
-    <PayPalScriptProvider options={initialOptions}>
     <BrowserRouter>
   <Routes>
     <Route path="/" element={<Landing />} />
@@ -43,7 +35,6 @@ const App = () => {
     <Route path="payment/:id" element={<Payment></Payment>}></Route>
   </Routes>
 </BrowserRouter>
-  </PayPalScriptProvider>
   </HelmetProvider>
 }
 

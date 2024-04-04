@@ -46,7 +46,7 @@ export const Navigation = () => {
       <div className="lg:block xxs:hidden xl:h-[480px]">
         <div className="bg-[rgb(251,77,1)] rounded-b-0 p-2 rounded-tl-lg h-[30px] text-white font-normal">
           <div className="flex items-center justify-between">
-          <h1 className="text-xs">Category Menu</h1>
+          <p className="text-xs">Category Menu</p>
           <a className="text-slate-100 text-[9px]" href="/category">
             See all
           </a>

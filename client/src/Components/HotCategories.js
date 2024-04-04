@@ -34,9 +34,9 @@ const HotCategories = () => {
     <div className="relative xxs:mt-10 lg:mt-20 w-full m-auto">
       <div className="bg-[rgb(230,230,230,.2)] p-4 rounded-2xl xxs:h-full xl:h-[400px]">
       <div className="flex items-center gap-2">
-        <h1 className="xxs:text-center sm:text-left sm:ml-7 text-gray-900 font-bold">
+        <h2 className="xxs:text-center sm:text-left sm:ml-7 text-gray-900 font-bold">
           Hot Categories
-        </h1>
+        </h2>
         <img src={HotCategoryIcon} loading="lazy" className="xxs:hidden xs:block" alt="Categories"></img>
       </div>
       <div className="rounded-lg xl:grid xxs:grid place-items-center xxs:grid-cols-1 mobl:grid-cols-2 xl:grid-cols-4 lg:grid-cols-3 m-2">

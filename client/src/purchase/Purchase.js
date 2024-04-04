@@ -110,8 +110,6 @@ const Purchase = () => {
       get_all_variants()
     }, [])
 
-    console.log(country)
-
     const make_order = async (e) => {
       e.preventDefault()
       const regex = /^[0-9]+$/;
@@ -326,7 +324,7 @@ const Purchase = () => {
         sessionExpiredError ? <Fragment>
           <Header></Header>
             <div className="flex h-[75vh] items-center justify-center flex-col">
-              <h1>Purchase session expired.</h1>
+              <p className="text-base">Purchase session expired.</p>
               <Link to="/" className="mt-4 px-4 bg-[#fd5702] rounded text-white py-2">
                 Home Page
               </Link>

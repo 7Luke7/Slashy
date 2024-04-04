@@ -36,9 +36,9 @@ const BestDeals = () => {
   <div className="bg-[rgb(230,230,230,.2)] p-4 rounded-2xl">
   <div className="md:mx-5 lg:mx-2 xl:mx-5">
   <div className="flex gap-2 items-center">
-      <h1 className="xxs:text-md md:text-lg text-gray-900 font-bold">
+      <h2 className="xxs:text-md md:text-lg text-gray-900 font-bold">
         Best Deals
-      </h1>
+      </h2>
       <img loading="lazy" className="xxs:hidden xs:block" src={bestdeals} alt="deals"></img>
     </div>
   </div>

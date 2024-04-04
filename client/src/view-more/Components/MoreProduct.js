@@ -18,12 +18,12 @@ export const MoreProduct = ({p}) => {
             <div>
             <div className="h-7">
             <span itemProp="price" className="text-[rgb(251,77,1)] font-bold xxs:text-[20px] text-sm">{p.sellprice}$</span></div>
-            <h1
+            <h3
               className="xxs:text-base xs:text-sm text-gray-800 font-bold mobl:text-xs"
               itemProp="name"
             >
               {p.nameEn.substring(0, 100)}...
-            </h1>
+            </h3>
             </div>
             
           </article>

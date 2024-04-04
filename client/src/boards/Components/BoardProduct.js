@@ -18,12 +18,12 @@ export const BoardProduct = ({activity}) => {
               <div className="h-7">
                   <span itemProp="price" className="text-[rgb(251,77,1)] font-bold xxs:text-[20px] text-sm">{activity.sellPrice}$</span>
               </div>
-                  <h1
+                  <h3
                       className="xxs:text-base xs:text-sm text-gray-800 font-bold mobl:text-xs"
                       itemProp="name"
                   >
                       {activity.nameEn.substring(0, 100)}...
-                  </h1>
+                  </h3>
           
           </article>
       </a>

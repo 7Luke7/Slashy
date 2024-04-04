@@ -58,7 +58,7 @@ export const ProductVariants = memo(({changeVarientArr, product}) => {
     return <div className="flex flex-col gap-2 mt-3 mb-3 xxs:max-h-[300px] lg:h-[235px] overflow-y-scroll overflow-x-none justify-start">
     {varientList && varientList.map((pv, index) => {
         return <Fragment key={index}>
-            <p className="text-xs text-gray-900 font-semibold">{pv.name}</p>
+            <h4 className="text-xs text-gray-900 font-semibold">{pv.name}</h4>
             <div className="gap-2 flex flex-wrap">
             {pv.keyObj.map((v, i) => {
                 return <Fragment key={i}>
