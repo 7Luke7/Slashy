@@ -21,12 +21,12 @@ export const RecomProducts = ({product, i}) => {
         <div className="h-7">
         <span itemProp="price" className="text-[rgb(251,77,1)] font-bold xxs:text-[20px] text-sm">{product.sellPrice}$</span>
         </div>
-        <h1
+        <h4
           className="xxs:text-base xs:text-sm text-gray-700 font-bold mobl:text-xs"
           itemProp="name"
         >
           {product.nameEn.substring(0, 50)}...
-        </h1>
+        </h4>
         </Fragment>
         
       </article>
