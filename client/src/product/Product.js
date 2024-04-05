@@ -201,6 +201,7 @@ const Product = () => {
             }, options);
             observerTest.observe(show_additional);
 
+            console.log(variantObj)
           return <Fragment>
             <Helmet>
         <meta
@@ -258,7 +259,7 @@ const Product = () => {
                         <div className="xxs:flex xxs:flex-wrap md:flex-nowrap gap-3 w-full justify-between items-center">
                             <div className="flex items-center p-3 xxs:w-full border border-[rgb(251,77,1)] justify-center rounded border border-gray-100">
                                 <p className="font-semibold xxs:text-[24px] sm:text-[20px] lg:text-md text-[rgb(251,77,1)]">
-                                    ${Object.getOwnPropertyNames(variantObj).length > 0 ? Number(variantObj.SELLPRICE).toFixed(2) * quantity : product.SELLPRICE}
+                                    ${Object.getOwnPropertyNames(variantObj).length > 0 ? (Number(variantObj.SELLPRICE) * Number(quantity)).toFixed(2) : product.SELLPRICE}
                                 </p>   
                             </div>
                     
