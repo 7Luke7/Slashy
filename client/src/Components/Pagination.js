@@ -42,7 +42,6 @@ export const Pagination = memo(({page, total}) => {
       } 
 
       setSearchParams(searchParams);
-      window.scrollTo(0, 0)
     }
 
     const navigateForm = (e) => {
@@ -56,7 +55,6 @@ export const Pagination = memo(({page, total}) => {
 
       setPageNumInput("")
       setSearchParams(searchParams);
-      window.scrollTo(0, 0)
     }
 
 

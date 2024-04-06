@@ -13,6 +13,7 @@ export const SearchProducts = ({category_id, page, isVideo, isAsc, fieldType, co
       setIsLoading(true)
       const fetch_products = async () => {
           document.getElementById("mobile_filter_component").style.display = "none"
+          window.scrollTo(0, 0)
           try {
               const request = await fetch("https://m.cjdropshipping.com/elastic-api/product/v4/search", {
                 method: "POST",
