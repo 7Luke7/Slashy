@@ -5,8 +5,6 @@ import {MobileSearch} from "./MobileSearch"
 import {CategoryBar} from "./CategoryBar"
 import { memo } from "react";
 
-// on up scroll show header
-
 export const Header = memo(() => {
     const MemoizedCategoryBar = memo(CategoryBar)
     const MemoizedHeaderLogo = memo(HeaderLogo)
