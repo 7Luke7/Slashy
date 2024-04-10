@@ -25,7 +25,7 @@ const sess = session({
         mongoUrl: process.env.DATABASE_URL,
     }),
     cookie: {
-        secure: false,
+        secure: true,
         httpOnly: true,
         maxAge: 7 * 24 * 60 * 60 * 1000, // 1 week in milliseconds
         sameSite: 'strict', // Set SameSite attribute to 'Strict'
