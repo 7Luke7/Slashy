@@ -15,7 +15,7 @@ const Register = () => {
   const SubmitRegForm = async (e) => {
       e.preventDefault()
       try {
-          const request = await fetch(`${process.env.REACT_APP_SERVER_URL}/api/sign_up`, {
+          const request = await fetch(`${process.env.SERVER_URL}/api/sign_up`, {
               method: "POST",
               headers: {
                   "Content-Type": "application/json"
