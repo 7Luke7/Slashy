@@ -5,7 +5,7 @@ import {MobileSearch} from "./MobileSearch"
 import {CategoryBar} from "./CategoryBar"
 import { memo } from "react";
 
-export const Header = memo(() => {
+export const Header = memo(({aff}) => {
     const MemoizedCategoryBar = memo(CategoryBar)
     const MemoizedHeaderLogo = memo(HeaderLogo)
     const MemoizedSearchProducts = memo(SearchProducts)
@@ -16,7 +16,7 @@ return <div id="header_container" className='sticky z-[500] right-0 left-0 top-0
     <div className="flex items-center xxs:justify-between lg:w-[90%] xl:w-[95%] xxs:w-[90%] m-auto sm:justify-evenly sm:px-5 py-2">
         <MemoizedHeaderLogo></MemoizedHeaderLogo>
         <MemoizedSearchProducts></MemoizedSearchProducts>
-        <HeaderNav></HeaderNav>
+        <HeaderNav aff={aff}></HeaderNav>
     </div>
     <MemoizedMobileSearch></MemoizedMobileSearch>
 </header>

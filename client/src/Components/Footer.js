@@ -20,19 +20,17 @@ export const Footer = () => {
     <li className="text-xs font-[600] text-gray-700">
         <a href="/tracking">Tracking product</a>
     </li>
+    <li className="text-xs font-[600] text-gray-700">
+        <a href="/affiliate">Become an affiliate</a>
+    </li>
 
 </main>
     <main className="list-none flex flex-col gap-3">
-          <h2 className="text-sm font-[600] text-gray-900">Payments</h2>
+          <h2 className="text-sm font-[600] text-gray-900">Supported payments</h2>
           <hr className="border-1 border-[rgb(251,77,1)]" />
           <li>
-            <a href="#" onClick={handlePaypalClick}>
-              <img
-                src="https://www.paypalobjects.com/webstatic/mktg/logo/pp_cc_mark_37x23.jpg"
-                border="0"
-                width="40"
-                alt="PayPal Logo"
-              />
+          <a href="https://www.paypal.com/ge/webapps/mpp/paypal-popup" target="_blank" title="How PayPal Works" onClick={handlePaypalClick}>
+            <img src="https://www.paypalobjects.com/webstatic/mktg/Logo/AM_mc_vs_ms_ae_UK.png" border="0" className="w-[160px]" alt="PayPal Acceptance Mark" />
             </a>
           </li>
         </main>

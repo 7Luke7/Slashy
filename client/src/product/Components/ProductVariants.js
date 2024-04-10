@@ -22,7 +22,7 @@ export const ProductVariants = memo(({changeVarientArr, product}) => {
                 }
 
                 for (let i = 0; i < stanProducts.length; i++) {
-                    stanProducts[i].SELLPRICE = (Number(stanProducts[i].SELLPRICE) * 1.31).toFixed(2);
+                    stanProducts[i].SELLPRICE = (Number(stanProducts[i].SELLPRICE) * 1.50).toFixed(2);
                     if (stanProducts[i].VARIANTKEY != null) {
                     const curVarientVal = stanProducts[i].VARIANTKEY.split('-');
 

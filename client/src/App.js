@@ -16,6 +16,14 @@ import ProcessPurchase from "./purchase/ProcessPurchase";
 import { TrackingInfo } from "./tracking/TrackingInfo";
 import { Payment } from "./purchase/Payment";
 import { HelmetProvider } from 'react-helmet-async';
+import { Affiliate } from "./affiliate/Affiliate";
+import Login from "./authenticate/Login";
+import Register from "./authenticate/Register";
+import { Dashboard } from "./dashboard/Dashboard";
+import { Account } from "./dashboard/Account";
+import { DashboardContent } from "./dashboard/DashboardContent";
+import { AffiliateLinks } from "./dashboard/AffiliateLinks";
+import { Withdraw } from "./withdraw/Withdraw";
 
 const App = () => {
   return  <HelmetProvider>
@@ -33,6 +41,15 @@ const App = () => {
     <Route path="purchase/:id" element={<ProcessPurchase />} />
     <Route path="tracking" element={<TrackingInfo />} />
     <Route path="payment/:id" element={<Payment></Payment>}></Route>
+    <Route path="affiliate" element={<Affiliate></Affiliate>}></Route>
+    <Route path="signup" element={<Register></Register>}></Route>
+    <Route path="signin" element={<Login></Login>}></Route>
+    <Route path="withdraw" element={<Withdraw />} />
+    <Route path="/dashboard" element={<Dashboard />}>
+      <Route path="" element={<DashboardContent />} />
+      <Route path="links" element={<AffiliateLinks />} />
+      <Route path="account" element={<Account />} />
+    </Route>
   </Routes>
 </BrowserRouter>
   </HelmetProvider>

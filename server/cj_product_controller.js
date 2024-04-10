@@ -48,7 +48,7 @@ const get_variant = async (req, res, next) => {
             throw new exntendedError("Failed creating order.", 500)
         }
 
-        make_order_request.data.variantSellPrice = (Number(make_order_request.data.variantSellPrice) * 1.31)
+        make_order_request.data.variantSellPrice = (Number(make_order_request.data.variantSellPrice) * 1.50)
         
         res.status(200).json(make_order_request.data)
     } catch (error) {
@@ -71,7 +71,7 @@ const query_order = async (req, res, next) => {
             other_expenses = Number(query_order_request.data.orderAmount) - (Number(query_order_request.data.productAmount) + Number(query_order_request.data.postageAmount))
         } 
 
-        query_order_request.data.productList[0].sellPrice = (Number(query_order_request.data.productList[0].sellPrice) * 1.31) * query_order_request.data.productList[0].quantity
+        query_order_request.data.productList[0].sellPrice = (Number(query_order_request.data.productList[0].sellPrice) * 1.50) * query_order_request.data.productList[0].quantity
         query_order_request.data.productAmount = query_order_request.data.productList[0].sellPrice
         query_order_request.data.postageAmount = (Number(query_order_request.data.postageAmount) * 1.19)
 

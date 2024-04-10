@@ -1,7 +1,7 @@
 import { useEffect, Fragment, useMemo, useState, lazy, Suspense } from "react"
 import { Footer } from "../Components/Footer"
 import { Header } from "../Components/Header"
-import { useNavigate, useParams } from "react-router-dom"
+import { useParams } from "react-router-dom"
 import cart from "../public/cart-white.svg"
 import RemovedProduct from "../public/removed_product.svg" 
 import {ChildCategories} from "./Components/ChildCategories"
@@ -20,9 +20,9 @@ const Product = () => {
     const [isEmpty, setIsEmpty] = useState(false)
     const [displayDescription, setDisplayDescription] = useState(false)
     const [curr, setCurr] = useState({})
+    const [isAffiliate, setIsAffiliate] = useState(false)
 
     const {id} = useParams()    
-    const navigate = useNavigate()
 
     useEffect(() => {
         const getProductDetail = async () => {
@@ -45,11 +45,11 @@ const Product = () => {
 
             if (data.SELLPRICE && data.SELLPRICE.includes('--')) {
                 const sellPriceRange = data.SELLPRICE.split(' -- ');
-                const newSellPriceMin = Number(sellPriceRange[0]) * 1.31;
-                const newSellPriceMax = Number(sellPriceRange[1]) * 1.31;
+                const newSellPriceMin = Number(sellPriceRange[0]) * 1.50;
+                const newSellPriceMax = Number(sellPriceRange[1]) * 1.50;
                 data.SELLPRICE = `${newSellPriceMin.toFixed(2)}--${newSellPriceMax.toFixed(2)}`;
             } else {
-                data.SELLPRICE = (Number(data.SELLPRICE) * 1.31).toFixed(2);
+                data.SELLPRICE = (Number(data.SELLPRICE) * 1.50).toFixed(2);
             }
 
             setProduct(data)
@@ -58,7 +58,26 @@ const Product = () => {
             }
         }
 
+        const verify_affiliate = async () => {
+            try {
+                const request = await fetch(`${process.env.REACT_APP_SERVER_URL}/api/verify_affiliate`, {
+                    method: "GET",
+                    credentials: "include"
+                })
+
+                const data = await request.json()
+
+                if (!request.ok) {
+                    throw new Error(data.status)
+                }
+                
+                setIsAffiliate(true)
+            } catch (error) {
+                setIsAffiliate(false)
+            }
+        }
         getProductDetail();
+        verify_affiliate()
       }, [id]);
 
       const changeVarientArr = (cueSele, curVarIndex, pv, setVarientList, index) => {
@@ -151,9 +170,37 @@ const Product = () => {
         if (!Object.keys(variantObj).length) return
         const variant_with_quantity = {pid: variantObj.PID, vid: variantObj.ID, quantity}
         sessionStorage.setItem("purchases", JSON.stringify(variant_with_quantity))
-        navigate("/purchase")
+        const affiliate_link = window.location.search
+        window.location.assign(`/purchase${affiliate_link}`)
     }
 
+    const affiliateProduct = async () => {
+        try {
+            const request = await fetch(`${process.env.REACT_APP_SERVER_URL}/api/add_affiliate_product`, {
+                method: "POST",   
+                credentials: "include",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    link: !isAffiliate ? document.location.href : document.location.href.split("?")[0] || document.location.href
+                })
+            })
+
+            const data = await request.json()
+
+            if (!request.ok) {
+                throw new Error(data.message)
+            }
+
+            if (!localStorage.getItem('notify') === "true") {
+                localStorage.setItem('notify', true);
+            }
+            document.getElementById("notify_affiliate").style.display = "block"
+        } catch (error) {
+            alert(error.message)
+        }
+    }
 
     const standard = Object.keys(variantObj).length === 0 ? product && product.stanProducts && product.stanProducts[0].STANDARD : variantObj.STANDARD
     const package_sizes = standard && standard.match(/\d+/g);
@@ -201,7 +248,6 @@ const Product = () => {
             }, options);
             observerTest.observe(show_additional);
 
-            console.log(variantObj)
           return <Fragment>
             <Helmet>
         <meta
@@ -297,17 +343,21 @@ const Product = () => {
                         <ProductVariants changeVarientArr={changeVarientArr} product={product}></ProductVariants>
                     
                     <div className="w-full flex xxs:flex-col xxs:items-start sm:flex-row gap-3 sm:items-center lg:items-start mt-2 justify-between h-full lg:h-1/2">
-                    <div className="flex lg:w-3/4 xl:w-1/3 flex-col xl:justify-between h-full w-full gap-5">
-                        <button onClick={addToCart} className="flex items-center xxs:py-3 justify-center px-4 lg:py-2 bg-[rgb(251,77,1)] text-white rounded gap-2 text-xs lg:text-sm">
+                    <div className="flex lg:w-4/4 xl:w-2/4 lg:flex-[12] xl:flex-[6] flex-col xl:justify-between h-full w-full gap-5">
+                    <button onClick={navigatePurchase} className="px-4 xxs:py-3 lg:py-2 bg-green-500 rounded hover:bg-green-600 text-white text-xs lg:text-sm">
+                            <span>Buy</span>
+                        </button>
+                        <div className="flex items-center gap-2">
+                        <button onClick={addToCart} className="flex-[6] items-center flex xxs:py-3 justify-center px-4 lg:py-2 bg-[#f97316] text-white rounded gap-2 text-xs lg:text-sm">
                             <img alt="Add to Cart" src={cart} className="w-4 h-4" />
                             <span>Add to cart</span>
                         </button>
-
-                        <button onClick={navigatePurchase} className="flex items-center justify-center px-4 xxs:py-3 lg:py-2 bg-green-500 rounded hover:bg-green-600 text-white text-xs lg:text-sm">
-                            <span>Buy</span>
-                        </button>
+                        {isAffiliate && <button onClick={affiliateProduct} className="flex-[6] px-4 xxs:py-3 lg:py-2 bg-[#f97316] rounded text-white text-xs lg:text-sm">
+                            <span>Affiliate</span>
+                        </button>}
+                        </div>
                     </div>
-                    <div className="xxs:w-full lg:w-full xl:w-2/4 h-full px-3 gap-5 py-2 flex lg:h-[100px] flex-col border justify-between rounded border-gray-100">
+                    <div className="xxs:w-full lg:w-full lg:flex-[9] xl:flex-[6] xl:w-2/4 h-full px-3 gap-5 py-2 flex lg:h-[100px] flex-col border justify-between rounded border-gray-100">
                             <p>Important information</p>
                             <div className="flex mt-2 mobl:w-8/12 items-center lg:w-full 2xl:w-3/4 justify-between">
                             <div>
@@ -337,7 +387,7 @@ const Product = () => {
       }, [isEmpty, variantObj, quantity, product, curr]);
 
     return <Fragment>
-        <Header></Header>
+        <Header aff={isAffiliate}></Header>
         <section id="closeScroll" className="min-h-screen w-full mx-auto mt-5">
             {renderProductDetails}
             <span id="show_additional"></span>

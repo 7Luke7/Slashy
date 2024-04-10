@@ -5,7 +5,7 @@ import mobile from "../public/mobile.svg"
 import envelope from "../public/envelope.svg"
 import { BringService } from "./BringService"
 import { BringServiceLoading } from "./BringServiceLoading"
-import { Link, useNavigate } from "react-router-dom"
+import { Link } from "react-router-dom"
 import { CountyPopUp } from "./CountryPopUp"
 import countries from "./countries.json"
 import { MainLoading } from "./MainLoading"
@@ -42,8 +42,6 @@ const Purchase = () => {
     const [fetchInventoryError, setFetchInventoryError] = useState()
     const [warning, setWarning] = useState("")
     const [rateLimitError, setRateLimitError] = useState()
-
-    const navigate = useNavigate()
 
     useEffect(() => {
       if (Object.keys(variant).length !== 0) {
@@ -92,7 +90,7 @@ const Purchase = () => {
             target_variant["NAMEEN"] = data.data.NAMEEN
           }
   
-          target_variant.SELLPRICE = ((Number(target_variant.SELLPRICE) * 1.31) * purchase_targets.quantity).toFixed(2);
+          target_variant.SELLPRICE = ((Number(target_variant.SELLPRICE) * 1.50) * purchase_targets.quantity).toFixed(2);
           target_variant.quantity = purchase_targets.quantity
           target_variant.property = data.data.PROPERTYKEY
           target_variant.psku = data.data.SKU
@@ -163,7 +161,8 @@ const Purchase = () => {
   
         const order_response = await make_order_request.json()
 
-        navigate(`/purchase/${order_response.data}`)
+        const affiliate_link = window.location.search
+        window.location.assign(`/purchase/${order_response.data}${affiliate_link}`)
       } catch (error) {
         if (error.message === 'Your request limit has been reached. try again after 5 seconds.') {
           setRateLimitError(true)

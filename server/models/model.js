@@ -124,8 +124,48 @@ const PayPalPaymentSchema = new mongoose.Schema({
     cj_order: orderSchema
 });
 
+const AffiliatedProductSchema = new mongoose.Schema({
+    pid: String,
+    variantImage: String,
+    comissionAmmount: Number,
+    createTime: Date,
+    link: String
+})
+
+const AffiliateLinksSchema = new mongoose.Schema({
+    link: String,
+    earning: {
+        type: Number,
+        default: 0
+    }
+})
+
+const AffiliateSchema = new mongoose.Schema({
+    email: {
+        type: String,
+        required: true,
+    },
+    password: {
+        type: String,
+        required: true
+    },
+    amount: { type: Number, default: 0 },
+    itemSold: [AffiliatedProductSchema],
+    affiliateLinks: [AffiliateLinksSchema]
+});
+
+const VerificationCodeSchema = new mongoose.Schema({
+    code: String,
+    expiresAt: { type: Date, expires: 0 },
+    affiliateId: String
+});
+
 const Purchase = mongoose.model("Purchase", PayPalPaymentSchema)
+const VerificationCode = mongoose.model('VerificationCode', VerificationCodeSchema);
+const Affiliate = mongoose.model("Affiliate", AffiliateSchema)
 
 module.exports = {
     Purchase,
+    Affiliate,
+    VerificationCode
 }

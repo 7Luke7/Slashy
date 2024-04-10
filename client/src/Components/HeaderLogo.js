@@ -6,7 +6,7 @@ export const HeaderLogo = () => {
         const closeScroll = document.getElementById("closeScroll")
         const catBar = document.getElementById("catBar")
 
-        catBar.style.display = "block"        
+        catBar.style.display = "block" 
         closeScroll.style.overflow = "hidden"
         closeScroll.style.position = "fixed"
     }

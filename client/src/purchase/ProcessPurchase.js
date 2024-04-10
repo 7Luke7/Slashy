@@ -111,7 +111,8 @@ const ProcessPurchase = () => {
                 },
                 body: JSON.stringify({
                     cj_order: {...variant, ...order},
-                    orderID: data.orderID
+                    orderID: data.orderID,
+                    affiliate_link: window.location.href      
                 }),
             })
             const response_data = await request.json()
@@ -172,7 +173,7 @@ const ProcessPurchase = () => {
                 <div className="min-h-[70vh] flex items-center justify-center">
                     <div className="flex flex-col items-center space-y-2">
                         <p>Order removed.</p>
-                        <a href="/purchase" className="rounded py-1 px-2 bg-[#fd5702]">Go to purchase</a>
+                        <a href="/purchase" className="rounded py-1 px-2 bg-[#fd5702]">Go to fill order</a>
                     </div>
                 </div>
                 <Footer></Footer>
@@ -206,12 +207,11 @@ const ProcessPurchase = () => {
                                     <div className="flex sm:flex-row xxs:flex-col items-center">
                                         <img className="mr-4 w-[210px] h-[190px]" width={150} height={150} loading="lazy" src={`${variant.variantImage}?x-oss-process=image/format,webp,image/resize,m_fill,w_150,h_150`} alt="Image" />
                                         <div className="flex xxs:mt-5 sm:mt-0 justify-between flex-col space-y-1">
-                                        <span className="font-semibold border-b">{variant.variantNameEn}</span>
+                                        <span className="font-semibold border-b">{variant.variantNameEn || "No title."}</span>
                                         <span>Weight: {variant.variantWeight}g</span>
                                         <span>Standard: {variant.variantStandard}mm</span>
                                         <span>Price: ${Number(variant.variantSellPrice).toFixed(2)}</span>
                                         </div>
-
                                     </div>
                                 </td>
                             </tr>

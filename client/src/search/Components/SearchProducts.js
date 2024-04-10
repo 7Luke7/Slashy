@@ -148,11 +148,11 @@ export const SearchProducts = ({category_id, page, isVideo, isAsc, fieldType, co
             if (p.sellPrice) {
               if (p.sellPrice.includes('--')) {
                   const sellPriceRange = p.sellPrice.split('--');
-                  const newSellPriceMin = Number(sellPriceRange[0]) * 1.31;
-                  const newSellPriceMax = Number(sellPriceRange[1]) * 1.31;
+                  const newSellPriceMin = Number(sellPriceRange[0]) * 1.50;
+                  const newSellPriceMax = Number(sellPriceRange[1]) * 1.50;
                   p.sellPrice = newSellPriceMin.toFixed(2) + '--' + newSellPriceMax.toFixed(2);
               } else {
-                p.sellPrice = (Number(p.sellPrice) * 1.31).toFixed(2);
+                p.sellPrice = (Number(p.sellPrice) * 1.50).toFixed(2);
               }
           }
           return <Fragment key={i}>
