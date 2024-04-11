@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 
 export const CartItem = ({v, i, cartItemDelete}) => {
     const [isLoading, setIsLoading] = useState(true)
@@ -14,7 +14,7 @@ export const CartItem = ({v, i, cartItemDelete}) => {
     }
 
     return <div key={i} className="lg:w-[300px] lg:h-[560px] xxs:w-[250px] sm:w-[250px] md:w-[250px] md:h-[550px] xs:w-[300px] flex flex-col m-auto">
-    <a href={`/product/${v.PID}`}>
+    <Link to={`/product/${v.PID}`}>
       <img
       loading="lazy"
       src={isLoading ? `${v.IMG}?x-oss-process=image/format,webp,image/resize,m_fill,w_25,h_25` : `${v.IMG}?x-oss-process=image/format,webp,image/resize,m_fill,w_190,h_210`}
@@ -22,16 +22,16 @@ export const CartItem = ({v, i, cartItemDelete}) => {
       className="object-cover border aspect-square lg:w-[300px] xs:w-[300px] md:h-[250px] md:w-[250px] xxs:w-[250px] xxs:h-[250px] lg:h-[300px]"
       alt={v.NAMEEN}
     ></img>
-    </a>
+    </Link>
       <article className="flex flex-col justify-start h-full" itemScope itemType="https://schema.org/Product">
-      <a href={`/product/${v.PID}`}>
+      <Link to={`/product/${v.PID}`}>
               <h2
               className="xxs:text-[11px] min-h-[58px] xs:text-[14px] md:text-[12px] md:w-full text-gray-800 font-bold"
               itemProp="name"
               >
                   {v.NAMEEN && v.NAMEEN.slice(0, 100) + "..." || "Has No title."}
               </h2>
-        </a>
+        </Link>
 
         <div className="flex flex-col gap-3 justify-center">
           <p className="xs:mt-3">Specification</p>

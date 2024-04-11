@@ -25,6 +25,7 @@ const Product = () => {
     const {id} = useParams()    
 
     useEffect(() => {
+        window.scrollTo(0, 0)
         const getProductDetail = async () => {
             try {
             const request = await fetch("https://m.cjdropshipping.com/elastic-api/cjProductInfo/v2/getProductDetail", {

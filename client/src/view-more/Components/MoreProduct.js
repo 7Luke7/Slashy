@@ -1,10 +1,11 @@
 import {useState} from "react"
+import {Link} from "react-router-dom"
 
 export const MoreProduct = ({p}) => {    
       const [isLoading, setIsLoading] = useState(true)
 
       return <div className="xxs:w-[200px] lg:w-[200px] xs:w-[180px] mobl:w-[200px] xl:w-[180px] transition-transform duration-100 ease-out transform hover:scale-[1.01]">
-        <a href={`/product/${p.id}`}>
+        <Link to={`/product/${p.id}`}>
           <div className="relative">
           <img
           loading="lazy"
@@ -27,6 +28,6 @@ export const MoreProduct = ({p}) => {
             </div>
             
           </article>
-          </a>
+          </Link>
         </div>
 }

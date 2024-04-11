@@ -2,6 +2,7 @@ import { Footer } from "../Components/Footer";
 import { Fragment, useState } from "react";
 import {Helmet} from "react-helmet-async"
 import Logo from "../public/slashy_logo.webp"
+import { Link } from "react-router-dom";
 
 const Login = () => {
   const [email, setEmail] = useState("")
@@ -10,7 +11,7 @@ const Login = () => {
     success: false,
     message: ""
   })
-
+  window.scrollTo(0, 0)
   const SubmitLoginForm = async (e) => {
     e.preventDefault()
     try {
@@ -25,7 +26,6 @@ const Login = () => {
               password: passwordInput,
             }),
         })
-        console.log(request)
 
         if (request.status === 429) {
           throw new Error("Your request limit has been reached. try again after 5 seconds.")
@@ -53,14 +53,22 @@ const Login = () => {
   return (
     <Fragment>
       <Helmet>
+        <meta
+          name="description"
+          content="Affiliate, Affiliate program, Signin Affiliate program, Login Affiliate program, Login slashy affiliate program, Signin slashy affiliate program"
+        />
+        <meta
+          name="keywords"
+          content="Affiliate, Affiliate program, Signin, Login, Slashy,"
+        />
         <title>
-          Signin - Slashy affiliate
+          Affiliate Signin - Slashy
         </title>
       </Helmet>
     <div className="xxs:flex xs:block xxs:items-center xxs:justify-center sm:block p-7">
-        <a href="/">
+        <Link to="/">
             <img loading="lazy" className="xxs:w-[80px] lg:w-[90px] object-cover xxs:h-[50px] lg:h-[40px]" src={Logo} alt="ლოგო"></img>
-        </a>
+        </Link>
     </div>
       <section className="flex items-center justify-center">
         <div className="flex h-full flex-[6] flex-col justify-center px-6 py-12 lg:px-8">
@@ -126,12 +134,11 @@ const Login = () => {
 
               <p className="mt-4 text-center text-[13px] text-gray-500">
                 Don't have an account?
-                <a
-                  href="/signup"
+                <Link to="/signup"
                   className="font-semibold leading-6 text-[rgb(237,123,82)] hover:text-[rgb(225,123,70)]"
                 >
                   Sign up
-                </a>
+                </Link>
               </p>
             </div>
           </div>

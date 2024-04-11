@@ -15,6 +15,7 @@ const Page = () => {
     const title = id === 1 ? "New Products" : id === 2 ? "Trending Products" : "Video Products"
 
     useEffect(() => {
+      window.scrollTo(0, 0)
       const get_activities = async () => {
         try {
             const head_url = {url: "", body: null}

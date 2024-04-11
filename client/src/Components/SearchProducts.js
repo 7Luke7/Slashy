@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Search from "../public/search.svg"
 
 export const SearchProducts = () => {
@@ -86,12 +86,12 @@ export const SearchProducts = () => {
         </div>
         {suggestion && suggestion.length > 0 && <main className='flex p-1 bg-slate-50 absolute flex-col top-0 w-full translate-y-[40px] justify-between'> 
         {suggestion.map((sug, i) => {
-            return <a href={`/search?page=1&keyword=${sug}`} key={i} onMouseOver={() => setCurrentKeyPos(i)} className={`${i === currentKeyPos && "bg-slate-200"} rounded cursor-pointer p-1`} onClick={() =>  {
+            return <Link to={`/search?page=1&keyword=${sug}`} key={i} onMouseOver={() => setCurrentKeyPos(i)} className={`${i === currentKeyPos && "bg-slate-200"} rounded cursor-pointer p-1`} onClick={() =>  {
                     setSuggestion([])
                     setSearchValue("")
                 }}>
                 {sug}
-            </a>
+            </Link>
         })}
     </main>
     }

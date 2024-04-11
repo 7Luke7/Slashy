@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { ProductListings } from "./ProductListings";
 import NewIcon from "../public/new-item-shopping-label-svgrepo-com.svg"
+import { Link } from "react-router-dom";
 
 const NewProducts = () => {
   const [newProducts, setNewProducts] = useState([])
@@ -42,7 +43,7 @@ const NewProducts = () => {
           </h2>
           <img loading="lazy" className="xxs:hidden xs:block" src={NewIcon} alt="new"></img>
       </div>
-      <a href="/view-more/1" className="text-blue-500 underline text-xs">View more</a>
+      <Link to="/view-more/1" className="text-blue-500 underline text-xs">View more</Link>
     </div>
       <ProductListings products={newProducts}></ProductListings>
     </div>  

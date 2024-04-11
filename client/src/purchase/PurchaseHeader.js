@@ -2,12 +2,13 @@ import Logo from "../public/slashy_logo.webp"
 import outChevron from "../public/out-chevron.svg"
 import check from "../public/check.svg"
 import { memo } from "react"
+import { Link } from "react-router-dom"
 
 export const PurchaseHeader = memo(() => {
     return <div className="flex flex-col items-center border-b bg-white py-4 sm:flex-row sm:px-10 lg:px-20 xl:px-32">
-    <a href="/">
+    <Link to="/">
     <img loading="lazy" className="xxs:w-[80px] lg:w-[90px] object-cover xxs:h-[50px] lg:h-[40px]" src={Logo} alt="logo"></img>
-</a>
+</Link>
 <div className="mt-4 py-2 text-xs sm:mt-0 sm:ml-auto sm:text-base">
   <div className="relative">
     <ul className="relative flex w-full items-center justify-between space-x-2 sm:space-x-4">

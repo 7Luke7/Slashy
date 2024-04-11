@@ -148,8 +148,11 @@ const Page = () => {
                 </div>
                 
                              <div className="bg-white pb-20 mt-20 w-full">
+                             <div className="sm:hidden xxs:-translate-y-[1px] xxs:sticky left-1/2 lg:min-w-[40%] xxs:border-2 xxs:border-t-0 xxs:border-r-0 xxs:border-l-0 lg:border-0 w-full lg:w-[60%] flex items-center justify-center lg:rounded-lg top-0 xxs:rounded-none lg:-translate-x-1/2 right-1/2 z-10 p-2" style={{backgroundColor: board.oneThreeBackColor}}>
+                                    <h1 style={{color: board.oneThreeFontColor}} className="font-bold md:text-2xl xxs:text-md">{board.threeNames[chosen || 0].name}</h1>
+                                </div>
                                 <div className="flex flex-wrap w-[95%] gap-1 m-auto xxs:pt-2 sm:pt-14 sm:justify-evenly xxs:justify-center">
-                                    {isLoading ? Array.from({length: 12}).map((_, index) => {
+                                    {isLoading ? Array.from({length: 54}).map((_, index) => {
                                         return <div key={index} className="animate-pulse xxs:w-[200px] lg:w-[200px] mt-4 xs:w-[180px] mobl:w-[200px] xl:w-[180px]">
                                         <div className="relative">
                                           <div className="bg-gray-300 rounded-t w-full xxs:h-[215px] xs:h-[245px] lg:h-[195px]"></div>

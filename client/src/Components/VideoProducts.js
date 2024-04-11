@@ -1,6 +1,7 @@
 import { ProductListings } from "./ProductListings";
 import { useEffect, useState } from "react";
 import video from "../public/video-camera-alt.svg"
+import { Link } from "react-router-dom";
 
 const VideoProducts = () => {
   const [videoProducts, setVideoProducts] = useState([])
@@ -41,7 +42,7 @@ const VideoProducts = () => {
       </h2>
       <img loading="lazy" src={video} className="xxs:hidden xs:block" alt="vid"></img>
     </div>
-<a href="/view-more/4" className="text-blue-500 underline text-xs">View more</a>
+<Link to="/view-more/4" className="text-blue-500 underline text-xs">View more</Link>
   </div>
     <ProductListings products={videoProducts}></ProductListings>
   </div>  

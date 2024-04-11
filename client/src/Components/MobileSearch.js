@@ -1,7 +1,6 @@
-import { Fragment, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Search from "../public/search.svg"
-import List from "../public/list.svg"
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export const MobileSearch = () => {
     const [searchValue, setSearchValue] = useState("")
@@ -73,12 +72,12 @@ export const MobileSearch = () => {
         </div>
         {suggestion && suggestion.length > 0 && <ul className='flex absolute rounded-tr-none rounded-md rounded-tl-none flex-col pl-2 pt-1 top-0 bg-slate-50 shadow-2xl w-full translate-y-[40px] justify-between'> 
             {suggestion.map((sug, i) => {
-                return <a href={`/search?page=1&keyword=${sug}`} key={i} className="rounded p-1" onClick={() =>  {
+                return <Link to={`/search?page=1&keyword=${sug}`} key={i} className="rounded p-1" onClick={() =>  {
                     setSearchValue("")
                     setSuggestion([])
                 }}>
                 {sug}
-            </a>
+            </Link>
             })}
         </ul>
         }

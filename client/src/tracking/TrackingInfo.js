@@ -6,6 +6,7 @@ import tracking from "../public/tracking.svg"
 export const TrackingInfo = () => {
     useEffect(() => {
         document.title = "Tracking - Slashy"
+        window.scrollTo(0, 0)
     }, [])
     return <>
       <Header></Header>

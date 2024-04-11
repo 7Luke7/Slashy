@@ -12,6 +12,7 @@ const NewProducts = lazy(() => import("../NewProducts"))
 const BestDeals = lazy(() => import("../BestDeals"))
 
 export const Landing = () => {
+  window.scrollTo(0, 0)
   return <>
     <Helmet>
     <meta

@@ -1,7 +1,7 @@
-"use client";
 import { memo, useEffect, useState } from "react";
 import { ProductListings } from "./ProductListings";
 import Fire from "../public/fire-flame-curved.svg"
+import { Link } from "react-router-dom";
 
 export const TrendingProducts = memo(() => {
   const [trendingProducts, setTrendingProducts] = useState([]) 
@@ -44,7 +44,7 @@ export const TrendingProducts = memo(() => {
       </h2>
       <img loading="lazy" className="xxs:hidden xs:block" src={Fire} alt="trend"></img>
     </div>
-  <a href="/view-more/2" className="text-blue-500 underline text-xs">View more</a>
+  <Link to="/view-more/2" className="text-blue-500 underline text-xs">View more</Link>
     </div>
       <ProductListings products={trendingProducts}></ProductListings>
     </div>  

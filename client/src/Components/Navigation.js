@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import {LandingCarousel} from "./LandingCarousel"
 import {ChildCats} from "./ChildCats"
 import {MainSearchNav} from "./MainSearchNav"
+import { Link } from "react-router-dom";
 
 export const Navigation = () => {
   const [catChild, setCatChild] = useState([])
@@ -46,10 +47,10 @@ export const Navigation = () => {
       <div className="lg:block xxs:hidden xl:h-[480px]">
         <div className="bg-[rgb(251,77,1)] rounded-b-0 p-2 rounded-tl-lg h-[30px] text-white font-normal">
           <div className="flex items-center justify-between">
-          <p className="text-xs">Category Menu</p>
-          <a className="text-slate-100 text-[9px]" href="/category">
+          <h1 className="text-xs">Category Menu</h1>
+          <Link className="text-slate-100 text-[9px]" to="/category">
             See all
-          </a>
+          </Link>
           </div>
         </div>
         <MainSearchNav setCatChild={setCatChild}></MainSearchNav>

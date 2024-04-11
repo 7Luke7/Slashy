@@ -5,8 +5,10 @@ import agreement from "../public/agreement.svg"
 import howitworks from "../public/howitworks.svg"
 import whatisaffiliate from "../public/whatisaffiliate.svg"
 import powerofaffiliate from "../public/powerofaffiliate.svg"
+import { Link } from "react-router-dom"
 
 export const Affiliate = () => {
+    window.scrollTo(0, 0)
     return <div id="closeScroll">
         <Helmet>
             <meta name="description" content="Unlock your earnings potential with our affiliate program. Earn 25% commission on thousands of products. Sign up today!" />
@@ -26,7 +28,7 @@ export const Affiliate = () => {
                                 At Slashy, we've launched an exciting affiliate program that lets you earn a generous <strong className="text-[#f97316]">25%</strong> commission on sales by promoting our products online. It's a great way to monetize your online presence and boost your earnings in the digital marketplace.
                             </p>
                                 <div className="flex flex-col justify-center items-center">
-                                <a href="/signup" className="bg-orange-500 hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-600 focus:ring-opacity-50 text-gray-100 py-2 xs:px-24 xxs:px-14 rounded shadow-lg transition duration-300 ease-in-out">Sign up now</a>
+                                <Link to="/signup" className="bg-orange-500 hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-600 focus:ring-opacity-50 text-gray-100 py-2 xs:px-24 xxs:px-14 rounded shadow-lg transition duration-300 ease-in-out">Sign up now</Link>
                                 <p className="text-lg text-gray-800 ml-3">and <strong>make money!</strong></p>
                                 </div>
                         </div>
@@ -81,7 +83,7 @@ export const Affiliate = () => {
                             </div>                          
                         </section>
                         <div className="flex flex-col justify-center items-center">
-                                <a href="/signup" className="bg-orange-500 hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-600 focus:ring-opacity-50 text-gray-100 py-2 xs:px-24 xxs:px-14 rounded shadow-lg transition duration-300 ease-in-out">Sign up now</a>
+                                <Link to="/signup" className="bg-orange-500 hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-600 focus:ring-opacity-50 text-gray-100 py-2 xs:px-24 xxs:px-14 rounded shadow-lg transition duration-300 ease-in-out">Sign up now</Link>
                                 <p className="text-lg text-gray-800 ml-3"><strong>make money!</strong></p>
                                 <p className="text-xs font-bold">Slashy</p>
                         </div>

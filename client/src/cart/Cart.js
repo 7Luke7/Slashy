@@ -3,6 +3,7 @@ import { Header } from "../Components/Header"
 import { Footer } from "../Components/Footer"
 import sadIcon from "../public/sad-icon.svg"
 import { CartItem } from "./CartItem"
+import { Link } from "react-router-dom"
 
 const Cart = () => {
     const [cartArray, setCartArray] = useState([])
@@ -10,6 +11,7 @@ const Cart = () => {
 
     useEffect(() => {
         document.title = "Slashy - cart"
+        window.scrollTo(0, 0)
         document.getElementById("notification").style.display = "none"
         const items = JSON.parse(localStorage.getItem("cart"))
         if (!items || !items.length) return setIsEmpty(true)
@@ -44,7 +46,7 @@ const Cart = () => {
             <img width={24} alt="sad emoji" height={24} src={sadIcon} loading="lazy"></img>
         </div>
 
-        <a href="/" className="bg-[rgb(237,123,82)] text-sm font-sm rounded p-2 text-white">Continue shopping</a>
+        <Link to="/" className="bg-[rgb(237,123,82)] text-sm font-sm rounded p-2 text-white">Continue shopping</Link>
 
         </div> :
         <div className={`${cartArray && cartArray.length > 0 ? "grid-cols-4 xs:grid-cols-1 xxs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 lg:grid-cols-3" : "grid-cols-1"}  gap-5 relative grid mb-3 mt-10 `}>        

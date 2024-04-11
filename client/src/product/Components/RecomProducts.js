@@ -1,10 +1,11 @@
 import { useState, Fragment} from "react"
+import {Link} from "react-router-dom"
 
 export const RecomProducts = ({product, i}) => {
     const [isLoading, setIsLoading] = useState(true)
 
     return <div key={i} className="xxs:w-[220px] lg:w-[200px] xs:w-[180px] mobl:w-[160px] xl:w-[200px] lg:hover:scale-[1.01]">
-    <a href={`/product/${product.productId}`}>
+    <Link to={`/product/${product.productId}`}>
       <div className="relative">
       <img
       loading="lazy"
@@ -30,6 +31,6 @@ export const RecomProducts = ({product, i}) => {
         </Fragment>
         
       </article>
-      </a>
+      </Link>
     </div>
 }

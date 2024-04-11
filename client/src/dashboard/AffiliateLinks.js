@@ -26,7 +26,7 @@ export const AffiliateLinks = () => {
                 throw new Error(data.message)
             }
 
-            alert("product removed. please refresh the page to view update.")
+            alert("Link removed. please refresh the page to view update.")
         } catch (error) {
             alert(error.message)
         }

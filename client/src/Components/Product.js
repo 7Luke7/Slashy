@@ -1,10 +1,11 @@
 import { useState } from "react"
+import { Link } from "react-router-dom"
 
 export const Product = ({product}) => {
     const [isLoading, setIsLoading] = useState(true)
 
     return <div className="xs:w-[150px] sm:w-[160px] md:w-[140px] mobl:w-[170px] xxs:w-[200px] lg:w-[140px] xl:w-[180px]  relative lg:hover:scale-[1.02]">
-    <a href={`product/${product.productId}`}>
+    <Link to={`product/${product.productId}`}>
     <img
         loading="lazy"
         className="w-full rounded-tr-lg rounded-tl-lg outline outline-2 outline-gray-100 object-cover xxs:h-[200px] xs:h-[180px]"
@@ -22,6 +23,6 @@ export const Product = ({product}) => {
         </h3>
         
         </article>
-        </a>  
+        </Link>  
     </div>
 }

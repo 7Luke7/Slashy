@@ -3,6 +3,7 @@ import { Fragment, useState } from "react";
 import check from "../public/check.svg"
 import {Helmet} from "react-helmet-async"
 import Logo from "../public/slashy_logo.webp"
+import { Link } from "react-router-dom";
 
 const Register = () => {
   const [email, setEmail] = useState("")
@@ -11,7 +12,8 @@ const Register = () => {
     success: false,
     message: ""
   })
-  
+  window.scrollTo(0, 0)
+
   const SubmitRegForm = async (e) => {
       e.preventDefault()
       try {
@@ -54,14 +56,22 @@ const Register = () => {
   return (
       <Fragment>
       <Helmet>
+      <meta
+          name="description"
+          content="Affiliate, Affiliate program, Signup affiliate program, Register affiliate program, Register slashy affiliate program, Signup slashy affiliate program"
+        />
+        <meta
+          name="keywords"
+          content="Affiliate, Affiliate program, signup, register, Slashy,"
+        />
         <title>
-          Signup - Slashy affiliate
+          Affiliate signup - Slashy
         </title>
       </Helmet>
     <div className="xxs:flex xs:block xxs:items-center xxs:justify-center sm:block p-7">
-        <a href="/">
+        <Link to="/">
           <img loading="lazy" className="xxs:w-[80px] lg:w-[90px] object-cover xxs:h-[50px] lg:h-[40px]" src={Logo} alt="Logo"></img>
-        </a>
+        </Link>
     </div>
       <section className="flex sm:mb-0 xxs:w-[95%] sm:w-[95%] lg:w-[80%] m-auto justify-between">
         <div className="h-full xxs:hidden sm:block flex-[6]">
@@ -168,12 +178,11 @@ const Register = () => {
 
               <p className="mt-4 text-center text-[13px] text-gray-500">
                 Already have an account?
-                <a
-                  href="/signin"
+                <Link to="/signin"
                   className="font-semibold leading-6 text-[rgb(237,123,82)] hover:text-[rgb(225,123,70)]"
                 >
                   Sign in
-                </a>
+                </Link>
               </p>
             </div>
           </div>

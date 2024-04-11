@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Footer } from "../Components/Footer";
 import { Header } from "../Components/Header"
 import searchNav from "../Components/searchNav.json"
@@ -49,18 +50,18 @@ const Category = () => {
                 <ul key={i} className="grid grid lg:grid-cols-5 xxs:grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-6 pt-4 gap-10">
                     {cat.children.map((c, ind) => {
                         return <li key={ind} className="text-sm text-gray-700 font-bold">
-                            <a href={`/search?category=${c.id}&page=1`}>
+                            <Link to={`/search?category=${c.id}&page=1`}>
                                 {c.nameEn}
-                            </a>
+                            </Link>
                             
                             <menu>
                                 {c.children.map((subc, index) => {
                                     return <li key={index} className="text-xs pt-2 text-gray-400 font-normal">
-                                        <a className="w-min" href={`/search?category=${subc.id}&page=1`}>
+                                        <Link className="w-min" to={`/search?category=${subc.id}&page=1`}>
                                             <h3 className="lg:hover:text-[rgb(251,77,1)]">
                                                 {subc.nameEn}
                                             </h3>
-                                        </a>
+                                        </Link>
                                     </li>
                                 })}
                             </menu>
@@ -73,18 +74,18 @@ const Category = () => {
                 <ul key={i} className="grid lg:grid-cols-5 xxs:grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-6 pt-4 gap-10">
                     {cat.children.map((c, ind) => {
                         return <li key={ind} className="text-sm text-gray-700 font-bold">
-                            <a href={`/search?category=${c.id}&page=1`}>
+                            <Link to={`/search?category=${c.id}&page=1`}>
                             {c.nameEn}
-                            </a>
+                            </Link>
                             
                             <menu>
                                 {c.children.map((subc, index) => {
                                     return <li key={index} className="text-xs pt-2 text-gray-400 font-normal">
-                                            <a href={`/search?category=${subc.id}&page=1`}>
+                                            <Link to={`/search?category=${subc.id}&page=1`}>
                                                 <h3 className="lg:hover:text-[rgb(251,77,1)]">
                                                     {subc.nameEn}
                                                 </h3>
-                                        </a>
+                                        </Link>
                                     </li>
                                 })}
                             </menu>

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 import List from "../public/list.svg"
 import Logo from "../public/slashy_logo.webp"
 
@@ -16,8 +17,8 @@ export const HeaderLogo = () => {
         <img alt="open menu" decoding="lazy" width={24} height={24} src={List}></img>
     </button> 
     </div>
-    <a rel="alternate" href="/">
+    <Link rel="alternate" to="/">
         <img loading="lazy" src={Logo} className="xxs:w-[80px] lg:w-[90px] object-cover xxs:h-[50px] lg:h-[40px]" alt="logo"></img>
-    </a>
+    </Link>
 </div>
 }

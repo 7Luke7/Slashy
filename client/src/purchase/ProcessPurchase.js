@@ -4,6 +4,7 @@ import { PayPalButtons, PayPalScriptProvider } from "@paypal/react-paypal-js";
 import { Footer } from "../Components/Footer";
 import { Header } from "../Components/Header";
 import loading from "../public/loading-loader.svg"
+import {Link} from "react-router-dom"
 
 const ProcessPurchase = () => {   
     const [order, setOrder] = useState()
@@ -157,7 +158,7 @@ const ProcessPurchase = () => {
                 <div className="min-h-[70vh] flex items-center justify-center">
                     <div className="flex flex-col items-center space-y-2">
                         <p>Failed while quering for Order, it might be removed.</p>
-                        <a href="/" className="rounded py-1 px-2 bg-[#fd5702]">Go to Home page</a>
+                        <Link to="/" className="rounded py-1 px-2 bg-[#fd5702]">Go to Home page</Link>
                     </div>
                 </div>
                 <Footer></Footer>
@@ -173,7 +174,7 @@ const ProcessPurchase = () => {
                 <div className="min-h-[70vh] flex items-center justify-center">
                     <div className="flex flex-col items-center space-y-2">
                         <p>Order removed.</p>
-                        <a href="/purchase" className="rounded py-1 px-2 bg-[#fd5702]">Go to fill order</a>
+                        <Link to="/purchase" className="rounded py-1 px-2 bg-[#fd5702]">Go to fill order</Link>
                     </div>
                 </div>
                 <Footer></Footer>
@@ -270,7 +271,7 @@ const ProcessPurchase = () => {
             <Header></Header>
                 <div className="h-[60vh] flex items-center justify-center flex-col">
                 <p>Payment Session Expired.</p>
-                <a href="/purchase" className="rounded py-1 px-2 bg-[#fd5702]">Go to purchase</a>
+                <Link to="/purchase" className="rounded py-1 px-2 bg-[#fd5702]">Go to purchase</Link>
                 </div>
             <Footer></Footer>
             </>
